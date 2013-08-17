@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D84065F517BF0A8A00D07028 /* shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = D84065F117BF0A6800D07028 /* shader.vsh */; };
+		D84065F617BF0A8A00D07028 /* shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = D84065F217BF0A6800D07028 /* shader.fsh */; };
 		D8A2B92117BEA30900002FF9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A2B92017BEA30900002FF9 /* Cocoa.framework */; };
 		D8A2B92B17BEA30900002FF9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8A2B92917BEA30900002FF9 /* InfoPlist.strings */; };
 		D8A2B93617BEA35800002FF9 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A2B93517BEA35800002FF9 /* GLKit.framework */; };
@@ -46,6 +48,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D84065F117BF0A6800D07028 /* shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vsh; sourceTree = "<group>"; };
+		D84065F217BF0A6800D07028 /* shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.fsh; sourceTree = "<group>"; };
 		D8A2B91D17BEA30900002FF9 /* KGL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KGL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A2B92017BEA30900002FF9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D8A2B92317BEA30900002FF9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -104,6 +108,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D84065F017BF0A4D00D07028 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				D84065F117BF0A6800D07028 /* shader.vsh */,
+				D84065F217BF0A6800D07028 /* shader.fsh */,
+			);
+			name = Shaders;
+			sourceTree = "<group>";
+		};
 		D8A2B91317BEA30900002FF9 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +158,7 @@
 		D8A2B92617BEA30900002FF9 /* KGL */ = {
 			isa = PBXGroup;
 			children = (
+				D84065F017BF0A4D00D07028 /* Shaders */,
 				D8A2B97517BEA3FD00002FF9 /* Protocols */,
 				D8A2B93917BEA3C300002FF9 /* KGLDrawable.h */,
 				D8A2B93A17BEA3C300002FF9 /* KGLDrawable.m */,
@@ -279,6 +293,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D84065F517BF0A8A00D07028 /* shader.vsh in Resources */,
+				D84065F617BF0A8A00D07028 /* shader.fsh in Resources */,
 				D8A2B92B17BEA30900002FF9 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +448,7 @@
 				D8A2B93417BEA30900002FF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
