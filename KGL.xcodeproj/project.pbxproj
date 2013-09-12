@@ -12,7 +12,6 @@
 		D8A2B92117BEA30900002FF9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A2B92017BEA30900002FF9 /* Cocoa.framework */; };
 		D8A2B92B17BEA30900002FF9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8A2B92917BEA30900002FF9 /* InfoPlist.strings */; };
 		D8A2B93617BEA35800002FF9 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A2B93517BEA35800002FF9 /* GLKit.framework */; };
-		D8A2B93817BEA36200002FF9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A2B93717BEA36200002FF9 /* OpenGL.framework */; };
 		D8A2B95717BEA3C300002FF9 /* KGLDrawable.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A2B93917BEA3C300002FF9 /* KGLDrawable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8A2B95817BEA3C300002FF9 /* KGLDrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A2B93A17BEA3C300002FF9 /* KGLDrawable.m */; };
 		D8A2B95917BEA3C300002FF9 /* KGLShader.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A2B93B17BEA3C300002FF9 /* KGLShader.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,6 +44,7 @@
 		D8A2B97417BEA3C300002FF9 /* KGLObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A2B95617BEA3C300002FF9 /* KGLObject.m */; };
 		D8A2B97817BEA41200002FF9 /* KGLRender.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A2B97617BEA41200002FF9 /* KGLRender.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8A2B97917BEA41200002FF9 /* KGLModelingHierarchy.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A2B97717BEA41200002FF9 /* KGLModelingHierarchy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D8AAAD2317E130880022133B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8AAAD2217E130880022133B /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +59,6 @@
 		D8A2B92A17BEA30900002FF9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8A2B92C17BEA30900002FF9 /* KGL-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KGL-Prefix.pch"; sourceTree = "<group>"; };
 		D8A2B93517BEA35800002FF9 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		D8A2B93717BEA36200002FF9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		D8A2B93917BEA3C300002FF9 /* KGLDrawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLDrawable.h; sourceTree = "<group>"; };
 		D8A2B93A17BEA3C300002FF9 /* KGLDrawable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLDrawable.m; sourceTree = "<group>"; };
 		D8A2B93B17BEA3C300002FF9 /* KGLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLShader.h; sourceTree = "<group>"; };
@@ -92,6 +91,7 @@
 		D8A2B95617BEA3C300002FF9 /* KGLObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLObject.m; sourceTree = "<group>"; };
 		D8A2B97617BEA41200002FF9 /* KGLRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLRender.h; sourceTree = "<group>"; };
 		D8A2B97717BEA41200002FF9 /* KGLModelingHierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLModelingHierarchy.h; sourceTree = "<group>"; };
+		D8AAAD2217E130880022133B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8A2B93817BEA36200002FF9 /* OpenGL.framework in Frameworks */,
+				D8AAAD2317E130880022133B /* OpenGL.framework in Frameworks */,
 				D8A2B93617BEA35800002FF9 /* GLKit.framework in Frameworks */,
 				D8A2B92117BEA30900002FF9 /* Cocoa.framework in Frameworks */,
 			);
@@ -137,8 +137,8 @@
 		D8A2B91F17BEA30900002FF9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8AAAD2217E130880022133B /* OpenGL.framework */,
 				D8A2B93517BEA35800002FF9 /* GLKit.framework */,
-				D8A2B93717BEA36200002FF9 /* OpenGL.framework */,
 				D8A2B92017BEA30900002FF9 /* Cocoa.framework */,
 				D8A2B92217BEA30900002FF9 /* Other Frameworks */,
 			);
@@ -268,7 +268,7 @@
 		D8A2B91417BEA30900002FF9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = khr;
 			};
 			buildConfigurationList = D8A2B91717BEA30900002FF9 /* Build configuration list for PBXProject "KGL" */;
@@ -342,7 +342,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -376,7 +375,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
