@@ -21,9 +21,7 @@
 @property (assign) GLKVector4 specular;
 @property (assign) GLfloat shininess;
 
-@property (assign) GLfloat constantAttenuation;
-@property (assign) GLfloat linearAttenuation;
-@property (assign) GLfloat quadraticAttenuation;
+@property (assign) GLKVector3 attenuation;
 
 @property (assign) GLKVector3 worldSpotDirection;
 @property (assign) GLKVector3 eyeSpotDirection;

@@ -15,9 +15,9 @@ struct light {
   vec4 diffuse;
   vec4 specular;
   
-  float constantAttenuation;
-  float linearAttenuation;
-  float quadraticAttenuation;
+  float attenuation0;
+  float attenuation1;
+  float attenuation2;
   
   vec3 spotDirection;
   float spotExponent;
@@ -83,9 +83,9 @@ void PointLight(const in int i,
   d = length(VP);
   VP = normalize(VP);
   
-  attenuation = 1.0 / (LightSource[i].constantAttenuation +
-                       LightSource[i].linearAttenuation*d +
-                       LightSource[i].quadraticAttenuation*d*d);
+  attenuation = 1.0 / (LightSource[i].attenuation0 +
+                       LightSource[i].attenuation1*d +
+                       LightSource[i].attenuation2*d*d);
   
   halfVector = normalize(VP + eye);
   nDotVP = max(0.0, dot(normal, VP));
@@ -124,9 +124,9 @@ void SpotLight(const in int i,
   d = length(VP);
   VP = normalize(VP);
   
-  attenuation = 1.0 / (LightSource[i].constantAttenuation +
-                       LightSource[i].linearAttenuation*d +
-                       LightSource[i].quadraticAttenuation*d*d);
+  attenuation = 1.0 / (LightSource[i].attenuation0 +
+                       LightSource[i].attenuation1*d +
+                       LightSource[i].attenuation2*d*d);
   
   //Is it inside the cone?
   spotDot = dot(-VP, normalize(LightSource[i].spotDirection));

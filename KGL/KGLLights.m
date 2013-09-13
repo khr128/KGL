@@ -77,9 +77,7 @@
   position.w = 1;
 
   light.worldPosition = position;
-  light.constantAttenuation = attenuation.x;
-  light.linearAttenuation = attenuation.y;
-  light.quadraticAttenuation = attenuation.z;
+  light.attenuation = attenuation;
   
   light.ambient = ambient;
   light.diffuse = diffuse;
@@ -101,9 +99,7 @@
   position.w = 1;
   
   light.worldPosition = position;
-  light.constantAttenuation = attenuation.x;
-  light.linearAttenuation = attenuation.y;
-  light.quadraticAttenuation = attenuation.z;
+  light.attenuation = attenuation;
   
   light.ambient = ambient;
   light.diffuse = diffuse;

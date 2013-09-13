@@ -26,14 +26,14 @@
   uniformName = [NSString stringWithFormat:@"LightSource[%d].specular", i];
   glUniform4fv(glGetUniformLocation(shader.program, [uniformName UTF8String]), 1, self.specular.v);
   
-  uniformName = [NSString stringWithFormat:@"LightSource[%d].constantAttenuation", i];
-  glUniform1f(glGetUniformLocation(shader.program, [uniformName UTF8String]), self.constantAttenuation);
+  uniformName = [NSString stringWithFormat:@"LightSource[%d].attenuation0", i];
+  glUniform1f(glGetUniformLocation(shader.program, [uniformName UTF8String]), self.attenuation.x);
   
-  uniformName = [NSString stringWithFormat:@"LightSource[%d].linearAttenuation", i];
-  glUniform1f(glGetUniformLocation(shader.program, [uniformName UTF8String]), self.linearAttenuation);
+  uniformName = [NSString stringWithFormat:@"LightSource[%d].attenuation1", i];
+  glUniform1f(glGetUniformLocation(shader.program, [uniformName UTF8String]), self.attenuation.y);
   
-  uniformName = [NSString stringWithFormat:@"LightSource[%d].quadraticAttenuation", i];
-  glUniform1f(glGetUniformLocation(shader.program, [uniformName UTF8String]), self.quadraticAttenuation);
+  uniformName = [NSString stringWithFormat:@"LightSource[%d].attenuation2", i];
+  glUniform1f(glGetUniformLocation(shader.program, [uniformName UTF8String]), self.attenuation.z);
   
   uniformName = [NSString stringWithFormat:@"LightSource[%d].spotDirection", i];
   glUniform3fv(glGetUniformLocation(shader.program, [uniformName UTF8String]), 1, self.eyeSpotDirection.v);
