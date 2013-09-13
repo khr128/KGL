@@ -13,4 +13,5 @@
 @interface KGLObject : NSObject<KGLModelingHierarchy,KGLRender>
 
 - (void)translateByX:(float)x y:(float)y z:(float)z;
+- (void)translationX:(float)x y:(float)y z:(float)z;
 @end

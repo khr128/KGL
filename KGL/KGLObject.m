@@ -22,8 +22,15 @@
 }
 
 -(void)translateByX:(float)x y:(float)y z:(float)z {
-  GLKMatrix4 translation = GLKMatrix4MakeTranslation(x, y, z);
-  localModelMatrix = GLKMatrix4Multiply(translation, localModelMatrix);
+  localModelMatrix.m30 += x;
+  localModelMatrix.m31 += y;
+  localModelMatrix.m32 += z;
+}
+
+-(void)translationX:(float)x y:(float)y z:(float)z {
+  localModelMatrix.m30 = x;
+  localModelMatrix.m31 = y;
+  localModelMatrix.m32 = z;
 }
 
 -(void)addChild:(id<KGLRender,KGLModelingHierarchy>)child {
