@@ -16,6 +16,10 @@
 @property (weak) id<KGLRender,KGLModelingHierarchy> parent;
 @property (strong) NSMutableArray *children;
 
+@optional
 - (void)addChild:(id<KGLRender,KGLModelingHierarchy>)child;
+- (void)addChild:(id<KGLRender,KGLModelingHierarchy>)child withUuid:(NSString *)uuid;
+- (void)removeChildByUuid:(NSString *)uuid;
+- (id<KGLRender,KGLModelingHierarchy>)findChild:(NSString *)uuid;
 
 @end

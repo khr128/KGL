@@ -45,6 +45,10 @@
 		D8A2B97817BEA41200002FF9 /* KGLRender.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A2B97617BEA41200002FF9 /* KGLRender.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8A2B97917BEA41200002FF9 /* KGLModelingHierarchy.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A2B97717BEA41200002FF9 /* KGLModelingHierarchy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8AAAD2317E130880022133B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8AAAD2217E130880022133B /* OpenGL.framework */; };
+		D8CFED0417E3EE3B0016F090 /* NSString+UUID.h in Headers */ = {isa = PBXBuildFile; fileRef = D8CFED0217E3EE3B0016F090 /* NSString+UUID.h */; };
+		D8CFED0517E3EE3B0016F090 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CFED0317E3EE3B0016F090 /* NSString+UUID.m */; };
+		D8CFED0917E3EE970016F090 /* KGLUUID.h in Headers */ = {isa = PBXBuildFile; fileRef = D8CFED0717E3EE970016F090 /* KGLUUID.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D8CFED0A17E3EE970016F090 /* KGLUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CFED0817E3EE970016F090 /* KGLUUID.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +96,10 @@
 		D8A2B97617BEA41200002FF9 /* KGLRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLRender.h; sourceTree = "<group>"; };
 		D8A2B97717BEA41200002FF9 /* KGLModelingHierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLModelingHierarchy.h; sourceTree = "<group>"; };
 		D8AAAD2217E130880022133B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		D8CFED0217E3EE3B0016F090 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UUID.h"; sourceTree = "<group>"; };
+		D8CFED0317E3EE3B0016F090 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
+		D8CFED0717E3EE970016F090 /* KGLUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLUUID.h; sourceTree = "<group>"; };
+		D8CFED0817E3EE970016F090 /* KGLUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLUUID.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +166,8 @@
 		D8A2B92617BEA30900002FF9 /* KGL */ = {
 			isa = PBXGroup;
 			children = (
+				D8CFED0617E3EE780016F090 /* Helpers */,
+				D8CFED0117E3EE200016F090 /* Categories */,
 				D84065F017BF0A4D00D07028 /* Shaders */,
 				D8A2B97517BEA3FD00002FF9 /* Protocols */,
 				D8A2B93917BEA3C300002FF9 /* KGLDrawable.h */,
@@ -214,6 +224,24 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		D8CFED0117E3EE200016F090 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				D8CFED0217E3EE3B0016F090 /* NSString+UUID.h */,
+				D8CFED0317E3EE3B0016F090 /* NSString+UUID.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		D8CFED0617E3EE780016F090 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D8CFED0717E3EE970016F090 /* KGLUUID.h */,
+				D8CFED0817E3EE970016F090 /* KGLUUID.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -234,8 +262,10 @@
 				D8A2B96B17BEA3C300002FF9 /* KGLLights.h in Headers */,
 				D8A2B96D17BEA3C300002FF9 /* KGLLight.h in Headers */,
 				D8A2B96F17BEA3C300002FF9 /* KGLScene.h in Headers */,
+				D8CFED0417E3EE3B0016F090 /* NSString+UUID.h in Headers */,
 				D8A2B97117BEA3C300002FF9 /* KGLReferenceFrame.h in Headers */,
 				D8A2B97317BEA3C300002FF9 /* KGLObject.h in Headers */,
+				D8CFED0917E3EE970016F090 /* KGLUUID.h in Headers */,
 				D8A2B97817BEA41200002FF9 /* KGLRender.h in Headers */,
 				D8A2B97917BEA41200002FF9 /* KGLModelingHierarchy.h in Headers */,
 			);
@@ -310,9 +340,11 @@
 				D8A2B95A17BEA3C300002FF9 /* KGLShader.m in Sources */,
 				D8A2B95C17BEA3C300002FF9 /* KGLError.m in Sources */,
 				D8A2B95E17BEA3C300002FF9 /* KGLShaderAttribute.m in Sources */,
+				D8CFED0517E3EE3B0016F090 /* NSString+UUID.m in Sources */,
 				D8A2B96017BEA3C300002FF9 /* KGLDrawableData.m in Sources */,
 				D8A2B96217BEA3C300002FF9 /* KGLMaterial.m in Sources */,
 				D8A2B96417BEA3C300002FF9 /* GLKAverageNormal.m in Sources */,
+				D8CFED0A17E3EE970016F090 /* KGLUUID.m in Sources */,
 				D8A2B96617BEA3C300002FF9 /* KGLDrawableDataIndexed.m in Sources */,
 				D8A2B96817BEA3C300002FF9 /* KGLDrawableDataArray.m in Sources */,
 				D8A2B96A17BEA3C300002FF9 /* KGLCamera.m in Sources */,

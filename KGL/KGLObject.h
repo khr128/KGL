@@ -12,6 +12,8 @@
 
 @interface KGLObject : NSObject<KGLModelingHierarchy,KGLRender>
 
+@property (strong) NSString *uuid;
+
 - (void)translateByX:(float)x y:(float)y z:(float)z;
 - (void)translationX:(float)x y:(float)y z:(float)z;
 - (void)rotationX:(float)radiansX y:(float)radiansY z:(float)radiansZ;

@@ -10,6 +10,7 @@
 #import <GLKit/GLKit.h>
 
 @implementation KGLObject
+@synthesize uuid;
 @synthesize modelMatrix, localModelMatrix, children, parent, scene;
 
 - (id)init {
@@ -47,9 +48,6 @@
   localModelMatrix.m20 = rm.m20;
   localModelMatrix.m21 = rm.m21;
   localModelMatrix.m22 = rm.m22;
-}
-
-- (void)addChild:(id<KGLRender,KGLModelingHierarchy>)child {
 }
 
 - (void)render {
