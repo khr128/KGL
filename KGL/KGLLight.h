@@ -11,6 +11,7 @@
 #import "KGLShader.h"
 
 @interface KGLLight : NSObject
+@property (strong) NSString *uuid;
 
 @property (assign) GLKVector4 worldPosition;
 @property (assign) GLKVector4 eyePosition;

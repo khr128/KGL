@@ -69,9 +69,23 @@
   [lights addObject:light];
 }
 
-- (void)addPointLightAt:(GLKVector4)position attenuation:(GLKVector3)attenuation
+- (KGLLight *)addPointLightWithUuid:(NSString *)uuid at:(GLKVector4)position attenuation:(GLKVector3)attenuation
                 ambient:(GLKVector4)ambient diffuse:(GLKVector4)diffuse specular:(GLKVector4)specular
 {
+  KGLLight *light;
+  light = [self findLight:uuid];
+
+  if (light == nil) {
+    light = [self addPointLightAt:position attenuation:attenuation ambient:ambient diffuse:diffuse specular:specular];
+  }
+  
+  light.uuid = uuid;
+  return light;
+}
+
+- (KGLLight *)addPointLightAt:(GLKVector4)position attenuation:(GLKVector3)attenuation
+ambient:(GLKVector4)ambient diffuse:(GLKVector4)diffuse specular:(GLKVector4)specular
+  {
   KGLLight *light;
   light = [[KGLLight alloc] init];
   position.w = 1;
@@ -86,6 +100,7 @@
   light.spotCutoff = 180;
   
   [lights addObject:light];
+    return light;
 }
 
 - (void)addSpotLightAt:(GLKVector4)position attenuation:(GLKVector3)attenuation
@@ -113,5 +128,10 @@
   [lights addObject:light];  
 }
 
+- (KGLLight *)findLight:(NSString *)uuid {
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uuid == %@", uuid];
+  NSArray *found = [lights filteredArrayUsingPredicate:predicate];
+  return found.count > 0 ? [found objectAtIndex:0] : nil;
+}
 
 @end
