@@ -26,9 +26,9 @@
 
 @property (assign) GLKVector3 worldSpotDirection;
 @property (assign) GLKVector3 eyeSpotDirection;
-@property (assign) GLfloat spotExponent;
+@property (assign) GLfloat spotTightness;
 @property (assign) GLfloat spotCosCutoff;
-@property (assign) GLfloat spotCutoff;
+@property (assign) GLfloat spotRadius;
 
 
 - (void)loadUniformsForLight:(int)i into:(KGLShader *)shader;

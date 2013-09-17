@@ -38,14 +38,14 @@
   uniformName = [NSString stringWithFormat:@"LightSource[%d].spotDirection", i];
   glUniform3fv(glGetUniformLocation(shader.program, [uniformName UTF8String]), 1, self.eyeSpotDirection.v);
   
-  uniformName = [NSString stringWithFormat:@"LightSource[%d].spotCutoff", i];
-  glUniform1f(glGetUniformLocation(shader.program, [uniformName UTF8String]), self.spotCutoff);
+  uniformName = [NSString stringWithFormat:@"LightSource[%d].spotRadius", i];
+  glUniform1f(glGetUniformLocation(shader.program, [uniformName UTF8String]), self.spotRadius);
   
   uniformName = [NSString stringWithFormat:@"LightSource[%d].spotCosCutoff", i];
   glUniform1f(glGetUniformLocation(shader.program, [uniformName UTF8String]), self.spotCosCutoff);
     
-  uniformName = [NSString stringWithFormat:@"LightSource[%d].spotExponent", i];
-  glUniform1f(glGetUniformLocation(shader.program, [uniformName UTF8String]), self.spotExponent);
+  uniformName = [NSString stringWithFormat:@"LightSource[%d].spotTightness", i];
+  glUniform1f(glGetUniformLocation(shader.program, [uniformName UTF8String]), self.spotTightness);
 
 }
 @end

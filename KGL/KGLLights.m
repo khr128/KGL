@@ -41,7 +41,7 @@
           GLKVector4Subtract(light.worldPosition, GLKVector4MakeWithVector3(camera.viewDir, 0)), 0.5);
       light.eyeHalfVector = [camera worldVecToEye:light.worldHalfVector];
       
-    } else if (light.spotCutoff == 180) { //point light
+    } else if (light.spotRadius == 180) { //point light
       
       light.eyePosition = [camera worldPosToEye:light.worldPosition];
       
@@ -55,7 +55,9 @@
 }
 
 - (void)addDirectionalLightAt:(GLKVector4)position
-                      ambient:(GLKVector4)ambient diffuse:(GLKVector4)diffuse specular:(GLKVector4)specular
+                      ambient:(GLKVector4)ambient
+                      diffuse:(GLKVector4)diffuse
+                     specular:(GLKVector4)specular
 {
   KGLLight *light;
   light = [[KGLLight alloc] init];
@@ -69,8 +71,12 @@
   [lights addObject:light];
 }
 
-- (KGLLight *)addPointLightWithUuid:(NSString *)uuid at:(GLKVector4)position attenuation:(GLKVector3)attenuation
-                ambient:(GLKVector4)ambient diffuse:(GLKVector4)diffuse specular:(GLKVector4)specular
+- (KGLLight *)addPointLightWithUuid:(NSString *)uuid
+                                 at:(GLKVector4)position
+                        attenuation:(GLKVector3)attenuation
+                            ambient:(GLKVector4)ambient
+                            diffuse:(GLKVector4)diffuse
+                           specular:(GLKVector4)specular
 {
   KGLLight *light;
   light = [self findLight:uuid];
@@ -83,8 +89,11 @@
   return light;
 }
 
-- (KGLLight *)addPointLightAt:(GLKVector4)position attenuation:(GLKVector3)attenuation
-ambient:(GLKVector4)ambient diffuse:(GLKVector4)diffuse specular:(GLKVector4)specular
+- (KGLLight *)addPointLightAt:(GLKVector4)position
+                  attenuation:(GLKVector3)attenuation
+                      ambient:(GLKVector4)ambient
+                      diffuse:(GLKVector4)diffuse
+                     specular:(GLKVector4)specular
   {
   KGLLight *light;
   light = [[KGLLight alloc] init];
@@ -97,18 +106,52 @@ ambient:(GLKVector4)ambient diffuse:(GLKVector4)diffuse specular:(GLKVector4)spe
   light.diffuse = diffuse;
   light.specular = specular;
   
-  light.spotCutoff = 180;
+  light.spotRadius = 180;
   
   [lights addObject:light];
-    return light;
+  return light;
 }
 
-- (void)addSpotLightAt:(GLKVector4)position attenuation:(GLKVector3)attenuation
-         spotDirection:(GLKVector3)spotDirection
-     spotCutoffDegrees:(float)spotCutoff
-          spotExponent:(float)spotExponent
-               ambient:(GLKVector4)ambient diffuse:(GLKVector4)diffuse specular:(GLKVector4)specular
+- (KGLLight *)addSpotLightWithUuid:(NSString *)uuid
+                            at:(GLKVector4)position
+                   attenuation:(GLKVector3)attenuation
+                 spotDirection:(GLKVector3)spotDirection
+             spotRadiusDegrees:(float)spotRadius
+             spotCutoffDegrees:(float)spotCutoff
+                  spotTightness:(float)spotTightness
+                       ambient:(GLKVector4)ambient
+                       diffuse:(GLKVector4)diffuse
+                      specular:(GLKVector4)specular
 {
+  KGLLight *light;
+  light = [self findLight:uuid];
+  
+  if (light == nil) {
+    light = [self addSpotLightAt:position
+                     attenuation:attenuation
+                   spotDirection:spotDirection
+               spotRadiusDegrees:spotRadius
+               spotCutoffDegrees:spotCutoff
+                   spotTightness:spotTightness
+                         ambient:ambient
+                         diffuse:diffuse
+                        specular:specular];
+  }
+  
+  light.uuid = uuid;
+  return light;
+}
+  
+- (KGLLight *)addSpotLightAt:(GLKVector4)position
+                 attenuation:(GLKVector3)attenuation
+               spotDirection:(GLKVector3)spotDirection
+           spotRadiusDegrees:(float)spotRadius
+           spotCutoffDegrees:(float)spotCutoff
+                spotTightness:(float)spotTightness
+                     ambient:(GLKVector4)ambient
+                     diffuse:(GLKVector4)diffuse
+                    specular:(GLKVector4)specular
+  {
   KGLLight *light;
   light = [[KGLLight alloc] init];
   position.w = 1;
@@ -121,11 +164,12 @@ ambient:(GLKVector4)ambient diffuse:(GLKVector4)diffuse specular:(GLKVector4)spe
   light.specular = specular;
   
   light.worldSpotDirection = spotDirection;
-  light.spotCutoff = spotCutoff;
+  light.spotRadius = spotRadius;
   light.spotCosCutoff = cos(GLKMathDegreesToRadians(spotCutoff));
-  light.spotExponent = spotExponent;
+  light.spotTightness = spotTightness;
   
-  [lights addObject:light];  
+  [lights addObject:light];
+  return light;
 }
 
 - (KGLLight *)findLight:(NSString *)uuid {
