@@ -13,10 +13,12 @@
 @interface KGLObject : NSObject<KGLModelingHierarchy,KGLRender>
 
 @property (strong) NSString *uuid;
+@property (assign) float scaleX;
+@property (assign) float scaleY;
+@property (assign) float scaleZ;
 
 - (void)translateByX:(float)x y:(float)y z:(float)z;
 - (void)translationX:(float)x y:(float)y z:(float)z;
 - (void)rotationX:(float)radiansX y:(float)radiansY z:(float)radiansZ;
-- (void)scaleByX:(float)x y:(float)y z:(float)z;
 - (void)scaleX:(float)x y:(float)y z:(float)z;
 @end

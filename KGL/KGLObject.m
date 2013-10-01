@@ -18,6 +18,7 @@
   if (self) {
     localModelMatrix = GLKMatrix4Identity;
     children = [[NSMutableArray alloc] init];
+    self.scaleX = self.scaleY = self.scaleZ = 1;
   }
   return self;
 }
@@ -34,11 +35,7 @@
   localModelMatrix.m32 = z;
 }
 
-- (void)rotationX:(float)radiansX y:(float)radiansY z:(float)radiansZ {
-  GLKMatrix3 rm = GLKMatrix3MakeXRotation(radiansX);
-  rm = GLKMatrix3RotateY(rm, radiansY);
-  rm = GLKMatrix3RotateZ(rm, radiansZ);
-  
+- (void)setLocalModelMatrix3:(GLKMatrix3)rm {
   localModelMatrix.m00 = rm.m00;
   localModelMatrix.m01 = rm.m01;
   localModelMatrix.m02 = rm.m02;
@@ -50,16 +47,22 @@
   localModelMatrix.m22 = rm.m22;
 }
 
-- (void)scaleByX:(float)x y:(float)y z:(float)z {
-  localModelMatrix.m00 *= x;
-  localModelMatrix.m11 *= y;
-  localModelMatrix.m22 *= z;
+- (void)rotationX:(float)radiansX y:(float)radiansY z:(float)radiansZ {
+  GLKMatrix3 rm = GLKMatrix3MakeXRotation(radiansX);
+  rm = GLKMatrix3RotateY(rm, radiansY);
+  rm = GLKMatrix3RotateZ(rm, radiansZ);
+  rm = GLKMatrix3Multiply(rm, GLKMatrix3MakeScale(self.scaleX, self.scaleY, self.scaleZ));
+  
+  [self setLocalModelMatrix3:rm];
 }
 
 - (void)scaleX:(float)x y:(float)y z:(float)z {
-  localModelMatrix.m00 = x;
-  localModelMatrix.m11 = y;
-  localModelMatrix.m22 = z;
+  GLKMatrix3 rm = GLKMatrix3Multiply(GLKMatrix4GetMatrix3(localModelMatrix), GLKMatrix3MakeScale(x/self.scaleX, y/self.scaleY, z/self.scaleZ));
+  [self setLocalModelMatrix3:rm];
+  
+  self.scaleX = x;
+  self.scaleY = y;
+  self.scaleZ = z;
 }
 
 - (void)render {
