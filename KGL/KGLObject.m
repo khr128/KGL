@@ -50,6 +50,12 @@
   localModelMatrix.m22 = rm.m22;
 }
 
+- (void)scaleByX:(float)x y:(float)y z:(float)z {
+  localModelMatrix.m00 *= x;
+  localModelMatrix.m11 *= y;
+  localModelMatrix.m22 *= z;
+}
+
 - (void)render {
   for (id<KGLRender> child in children) {
     [child render];
