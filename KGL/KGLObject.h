@@ -18,4 +18,5 @@
 - (void)translationX:(float)x y:(float)y z:(float)z;
 - (void)rotationX:(float)radiansX y:(float)radiansY z:(float)radiansZ;
 - (void)scaleByX:(float)x y:(float)y z:(float)z;
+- (void)scaleX:(float)x y:(float)y z:(float)z;
 @end
