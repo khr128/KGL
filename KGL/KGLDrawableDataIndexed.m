@@ -7,7 +7,7 @@
 //
 
 #import "KGLDrawableDataIndexed.h"
-#import "GLKAverageNormal.h"
+#import "KGLAverageNormal.h"
 
 @implementation KGLDrawableDataIndexed
 
@@ -39,7 +39,7 @@
   
   NSMutableArray * averageNormals = [[NSMutableArray alloc] init];
   for (int i=0; i<vertexCount; ++i) {
-    [averageNormals addObject:[[GLKAverageNormal alloc]init]];
+    [averageNormals addObject:[[KGLAverageNormal alloc]init]];
   }
   
   int faceCount = indexSize / (3*sizeof(GLushort));
@@ -47,7 +47,7 @@
   for (int face=0; face < faceCount; ++face) {
     for (int vertex=0; vertex < 3; ++vertex) {
       GLKVector3 n = [self computeNormal:vertex face:face];
-      GLKAverageNormal* an = [averageNormals objectAtIndex:indices[3*face + vertex]];
+      KGLAverageNormal* an = [averageNormals objectAtIndex:indices[3*face + vertex]];
       [an add:n];
     }
   }
@@ -55,7 +55,7 @@
   GLfloat *normals = [self normals];
   
   for (int i=0; i<vertexCount; ++i) {
-    GLKAverageNormal* an = [averageNormals objectAtIndex:i];
+    KGLAverageNormal* an = [averageNormals objectAtIndex:i];
     GLKVector3 n = [an normal];
     for (int ni=0; ni<3; ++ni) {
       *(normals+3*i+ni) = n.v[ni];

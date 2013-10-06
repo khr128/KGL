@@ -24,8 +24,8 @@
 		D8A2B96017BEA3C300002FF9 /* KGLDrawableData.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A2B94217BEA3C300002FF9 /* KGLDrawableData.m */; };
 		D8A2B96117BEA3C300002FF9 /* KGLMaterial.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A2B94317BEA3C300002FF9 /* KGLMaterial.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8A2B96217BEA3C300002FF9 /* KGLMaterial.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A2B94417BEA3C300002FF9 /* KGLMaterial.m */; };
-		D8A2B96317BEA3C300002FF9 /* GLKAverageNormal.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A2B94517BEA3C300002FF9 /* GLKAverageNormal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D8A2B96417BEA3C300002FF9 /* GLKAverageNormal.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A2B94617BEA3C300002FF9 /* GLKAverageNormal.m */; };
+		D8A2B96317BEA3C300002FF9 /* KGLAverageNormal.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A2B94517BEA3C300002FF9 /* KGLAverageNormal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D8A2B96417BEA3C300002FF9 /* KGLAverageNormal.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A2B94617BEA3C300002FF9 /* KGLAverageNormal.m */; };
 		D8A2B96517BEA3C300002FF9 /* KGLDrawableDataIndexed.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A2B94717BEA3C300002FF9 /* KGLDrawableDataIndexed.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8A2B96617BEA3C300002FF9 /* KGLDrawableDataIndexed.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A2B94817BEA3C300002FF9 /* KGLDrawableDataIndexed.m */; };
 		D8A2B96717BEA3C300002FF9 /* KGLDrawableDataArray.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A2B94917BEA3C300002FF9 /* KGLDrawableDataArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -75,8 +75,8 @@
 		D8A2B94217BEA3C300002FF9 /* KGLDrawableData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLDrawableData.m; sourceTree = "<group>"; };
 		D8A2B94317BEA3C300002FF9 /* KGLMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLMaterial.h; sourceTree = "<group>"; };
 		D8A2B94417BEA3C300002FF9 /* KGLMaterial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLMaterial.m; sourceTree = "<group>"; };
-		D8A2B94517BEA3C300002FF9 /* GLKAverageNormal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLKAverageNormal.h; sourceTree = "<group>"; };
-		D8A2B94617BEA3C300002FF9 /* GLKAverageNormal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLKAverageNormal.m; sourceTree = "<group>"; };
+		D8A2B94517BEA3C300002FF9 /* KGLAverageNormal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLAverageNormal.h; sourceTree = "<group>"; };
+		D8A2B94617BEA3C300002FF9 /* KGLAverageNormal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLAverageNormal.m; sourceTree = "<group>"; };
 		D8A2B94717BEA3C300002FF9 /* KGLDrawableDataIndexed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLDrawableDataIndexed.h; sourceTree = "<group>"; };
 		D8A2B94817BEA3C300002FF9 /* KGLDrawableDataIndexed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLDrawableDataIndexed.m; sourceTree = "<group>"; };
 		D8A2B94917BEA3C300002FF9 /* KGLDrawableDataArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLDrawableDataArray.h; sourceTree = "<group>"; };
@@ -182,8 +182,8 @@
 				D8A2B94217BEA3C300002FF9 /* KGLDrawableData.m */,
 				D8A2B94317BEA3C300002FF9 /* KGLMaterial.h */,
 				D8A2B94417BEA3C300002FF9 /* KGLMaterial.m */,
-				D8A2B94517BEA3C300002FF9 /* GLKAverageNormal.h */,
-				D8A2B94617BEA3C300002FF9 /* GLKAverageNormal.m */,
+				D8A2B94517BEA3C300002FF9 /* KGLAverageNormal.h */,
+				D8A2B94617BEA3C300002FF9 /* KGLAverageNormal.m */,
 				D8A2B94717BEA3C300002FF9 /* KGLDrawableDataIndexed.h */,
 				D8A2B94817BEA3C300002FF9 /* KGLDrawableDataIndexed.m */,
 				D8A2B94917BEA3C300002FF9 /* KGLDrawableDataArray.h */,
@@ -255,7 +255,7 @@
 				D8A2B95D17BEA3C300002FF9 /* KGLShaderAttribute.h in Headers */,
 				D8A2B95F17BEA3C300002FF9 /* KGLDrawableData.h in Headers */,
 				D8A2B96117BEA3C300002FF9 /* KGLMaterial.h in Headers */,
-				D8A2B96317BEA3C300002FF9 /* GLKAverageNormal.h in Headers */,
+				D8A2B96317BEA3C300002FF9 /* KGLAverageNormal.h in Headers */,
 				D8A2B96517BEA3C300002FF9 /* KGLDrawableDataIndexed.h in Headers */,
 				D8A2B96717BEA3C300002FF9 /* KGLDrawableDataArray.h in Headers */,
 				D8A2B96917BEA3C300002FF9 /* KGLCamera.h in Headers */,
@@ -343,7 +343,7 @@
 				D8CFED0517E3EE3B0016F090 /* NSString+UUID.m in Sources */,
 				D8A2B96017BEA3C300002FF9 /* KGLDrawableData.m in Sources */,
 				D8A2B96217BEA3C300002FF9 /* KGLMaterial.m in Sources */,
-				D8A2B96417BEA3C300002FF9 /* GLKAverageNormal.m in Sources */,
+				D8A2B96417BEA3C300002FF9 /* KGLAverageNormal.m in Sources */,
 				D8CFED0A17E3EE970016F090 /* KGLUUID.m in Sources */,
 				D8A2B96617BEA3C300002FF9 /* KGLDrawableDataIndexed.m in Sources */,
 				D8A2B96817BEA3C300002FF9 /* KGLDrawableDataArray.m in Sources */,

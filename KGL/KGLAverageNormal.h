@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
 
-@interface GLKAverageNormal : NSObject {
+@interface KGLAverageNormal : NSObject {
   GLKVector3 sum;
   int count;
 }

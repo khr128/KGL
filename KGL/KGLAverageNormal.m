@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 khr. All rights reserved.
 //
 
-#import "GLKAverageNormal.h"
+#import "KGLAverageNormal.h"
 
-@implementation GLKAverageNormal
+@implementation KGLAverageNormal
 
 - (id)init {
   self = [super init];
