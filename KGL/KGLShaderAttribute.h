@@ -13,11 +13,13 @@
 @property (readonly) GLenum type;
 @property (readonly) GLboolean normalized;
 @property (readonly) GLsizei stride;
-@property (readonly) GLuint bufferOffset;
+@property (readonly) char * bufferOffset;
 
 - (id)initWithComponentCount:(GLint)componentCount
               type:(GLenum)type
         normalized:(GLboolean)normalized
             stride:(GLsizei)stride
       bufferOffset:(GLuint)bufferOffset;
+
+- (void)enableVertexArray:(GLuint)posAttribIndex;
 @end

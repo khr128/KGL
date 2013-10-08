@@ -9,7 +9,7 @@
 #import "KGLDrawableData.h"
 
 @implementation KGLDrawableData
-@synthesize vertices=_vertices, vertexSize;
+@synthesize vertices=_vertices, vertexSize, textureCoordsSize;
 
 - (id)init {
   self = [super init];
@@ -32,6 +32,19 @@
     glGenBuffers(1, &posBufferName);
     glBindBuffer(GL_ARRAY_BUFFER, posBufferName);
     glBufferData(GL_ARRAY_BUFFER, vertexSize, _vertices, GL_STATIC_DRAW);
+  }
+}
+
+- (void)loadTextureCoords:(const GLfloat *)array size:(GLuint)size {
+  //Always call after normals have been added
+  textureCoordsSize = size;
+  GLfloat *p = realloc(_vertices, 2*vertexSize+textureCoordsSize);
+  if (p) {
+    _vertices = p;
+    [self bindArrayBuffer];
+    memcpy([self textureCoords], array, size);
+  } else {
+    NSLog(@"KGLDrawableData::createNormals failed to allocate memory for texture coords");
   }
 }
 
@@ -63,7 +76,7 @@
   if ([NSOpenGLContext currentContext]) {
     [self bindVertexArray];
     glBindBuffer(GL_ARRAY_BUFFER, posBufferName);
-    glBufferData(GL_ARRAY_BUFFER, 2*vertexSize, _vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 2*vertexSize+textureCoordsSize, _vertices, GL_STATIC_DRAW);
   }
 }
 
@@ -73,6 +86,10 @@
 
 - (GLfloat *)normals {
   return self.vertices + 3*[self vertexCount];
+}
+
+- (GLfloat *)textureCoords {
+  return self.vertices + 6*[self vertexCount];
 }
 
 - (void)draw {

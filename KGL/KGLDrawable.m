@@ -10,8 +10,6 @@
 #import "KGLShaderAttribute.h"
 #import "KGLScene.h"
 
-#define BUFFER_OFFSET(i) ((char *)NULL + (i))
-
 @implementation KGLDrawable
 @synthesize shaderAttributes, scene;
 
@@ -21,13 +19,7 @@
   for(NSString *attributeName in scene.shader.attributes) {
     GLuint posAttribIndex = glGetAttribLocation(scene.shader.program, [attributeName UTF8String]);
     KGLShaderAttribute *attribute = [shaderAttributes objectForKey:attributeName];
-    glVertexAttribPointer(posAttribIndex,
-                          attribute.componentCount,
-                          attribute.type,
-                          attribute.normalized,
-                          attribute.stride,
-                          BUFFER_OFFSET(attribute.bufferOffset));
-    glEnableVertexAttribArray(posAttribIndex);
+    [attribute enableVertexArray:posAttribIndex];
   }
 }
 

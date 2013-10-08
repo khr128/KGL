@@ -16,14 +16,17 @@
 
 @property (assign) GLfloat *vertices;
 @property (readonly) GLuint vertexSize;
+@property (readonly) GLuint textureCoordsSize;
 
 -(void)loadVertices:(const GLfloat *)array  size:(GLuint)size;
 -(void)createNormals;
+-(void)loadTextureCoords:(const GLfloat *)array size:(GLuint)size;
 
 - (GLKVector3)normalFor:(int)baseIndex v1Index:(int)v1Index v2Index:(int)v2Index;
 - (int)vertexCount;
 
 - (GLfloat*)normals;
+- (GLfloat*)textureCoords;
 
 - (void)bindVertexArray;
 - (void)bindArrayBuffer;
