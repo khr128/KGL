@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AEDA67A21804AE37006237A6 /* KGLTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = AEDA67A01804AE37006237A6 /* KGLTexture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEDA67A31804AE37006237A6 /* KGLTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDA67A11804AE37006237A6 /* KGLTexture.m */; };
 		D84065F517BF0A8A00D07028 /* shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = D84065F117BF0A6800D07028 /* shader.vsh */; };
 		D84065F617BF0A8A00D07028 /* shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = D84065F217BF0A6800D07028 /* shader.fsh */; };
 		D8A2B92117BEA30900002FF9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A2B92017BEA30900002FF9 /* Cocoa.framework */; };
@@ -52,6 +54,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AEDA67A01804AE37006237A6 /* KGLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLTexture.h; sourceTree = "<group>"; };
+		AEDA67A11804AE37006237A6 /* KGLTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLTexture.m; sourceTree = "<group>"; };
 		D84065F117BF0A6800D07028 /* shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vsh; sourceTree = "<group>"; };
 		D84065F217BF0A6800D07028 /* shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.fsh; sourceTree = "<group>"; };
 		D8A2B91D17BEA30900002FF9 /* KGL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KGL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +205,8 @@
 				D8A2B95517BEA3C300002FF9 /* KGLObject.h */,
 				D8A2B95617BEA3C300002FF9 /* KGLObject.m */,
 				D8A2B92717BEA30900002FF9 /* Supporting Files */,
+				AEDA67A01804AE37006237A6 /* KGLTexture.h */,
+				AEDA67A11804AE37006237A6 /* KGLTexture.m */,
 			);
 			path = KGL;
 			sourceTree = "<group>";
@@ -266,6 +272,7 @@
 				D8A2B97117BEA3C300002FF9 /* KGLReferenceFrame.h in Headers */,
 				D8A2B97317BEA3C300002FF9 /* KGLObject.h in Headers */,
 				D8CFED0917E3EE970016F090 /* KGLUUID.h in Headers */,
+				AEDA67A21804AE37006237A6 /* KGLTexture.h in Headers */,
 				D8A2B97817BEA41200002FF9 /* KGLRender.h in Headers */,
 				D8A2B97917BEA41200002FF9 /* KGLModelingHierarchy.h in Headers */,
 			);
@@ -350,6 +357,7 @@
 				D8A2B96A17BEA3C300002FF9 /* KGLCamera.m in Sources */,
 				D8A2B96C17BEA3C300002FF9 /* KGLLights.m in Sources */,
 				D8A2B96E17BEA3C300002FF9 /* KGLLight.m in Sources */,
+				AEDA67A31804AE37006237A6 /* KGLTexture.m in Sources */,
 				D8A2B97017BEA3C300002FF9 /* KGLScene.m in Sources */,
 				D8A2B97217BEA3C300002FF9 /* KGLReferenceFrame.m in Sources */,
 				D8A2B97417BEA3C300002FF9 /* KGLObject.m in Sources */,

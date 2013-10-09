@@ -41,8 +41,8 @@
   GLfloat *p = realloc(_vertices, 2*vertexSize+textureCoordsSize);
   if (p) {
     _vertices = p;
-    [self bindArrayBuffer];
     memcpy([self textureCoords], array, size);
+    [self bindArrayBuffer];
   } else {
     NSLog(@"KGLDrawableData::createNormals failed to allocate memory for texture coords");
   }

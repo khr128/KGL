@@ -9,6 +9,7 @@
 #import "KGLDrawable.h"
 #import "KGLShaderAttribute.h"
 #import "KGLScene.h"
+#import "KGLTexture.h"
 
 @implementation KGLDrawable
 @synthesize shaderAttributes, scene;
@@ -34,7 +35,12 @@
   GLKMatrix4 globalModelMatrix = GLKMatrix4Multiply(self.parent.modelMatrix, self.localModelMatrix);
   [scene setModelTransformUniformsWith:globalModelMatrix];
   
+  glActiveTexture(GL_TEXTURE0);
+  glUniform1i(glGetUniformLocation(scene.shader.program, "tex"), 0);
+  
+  [self.texture bind];
   [data draw];
+  [self.texture unbind];
 }
 
 @end
