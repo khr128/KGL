@@ -19,6 +19,7 @@
 @property (readonly) GLuint textureCoordsSize;
 
 -(void)loadVertices:(const GLfloat *)array  size:(GLuint)size;
+-(void)loadNormals:(const GLfloat *)array  size:(GLuint)size;
 -(void)createNormals;
 -(void)loadTextureCoords:(const GLfloat *)array size:(GLuint)size;
 

@@ -35,6 +35,17 @@
   }
 }
 
+-(void)loadNormals:(const GLfloat *)array  size:(GLuint)size {
+  GLfloat *p = realloc(_vertices, 2*vertexSize);
+  if (p) {
+    _vertices = p;
+    memcpy([self normals], array, size);
+    [self bindArrayBuffer];
+  } else {
+    NSLog(@"KGLDrawableData::loadNormals failed to allocate memory for texture coords");
+  }
+}
+
 - (void)loadTextureCoords:(const GLfloat *)array size:(GLuint)size {
   //Always call after normals have been added
   textureCoordsSize = size;
@@ -44,7 +55,7 @@
     memcpy([self textureCoords], array, size);
     [self bindArrayBuffer];
   } else {
-    NSLog(@"KGLDrawableData::createNormals failed to allocate memory for texture coords");
+    NSLog(@"KGLDrawableData::loadTextureCoords failed to allocate memory for texture coords");
   }
 }
 
