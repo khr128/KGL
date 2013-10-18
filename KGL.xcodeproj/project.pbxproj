@@ -51,6 +51,8 @@
 		D8CFED0517E3EE3B0016F090 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CFED0317E3EE3B0016F090 /* NSString+UUID.m */; };
 		D8CFED0917E3EE970016F090 /* KGLUUID.h in Headers */ = {isa = PBXBuildFile; fileRef = D8CFED0717E3EE970016F090 /* KGLUUID.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8CFED0A17E3EE970016F090 /* KGLUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CFED0817E3EE970016F090 /* KGLUUID.m */; };
+		D8F842F81810A82B0013D2FC /* KGL.h in Headers */ = {isa = PBXBuildFile; fileRef = D8F842F61810A82B0013D2FC /* KGL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D8F842F91810A82B0013D2FC /* KGL.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F842F71810A82B0013D2FC /* KGL.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +106,8 @@
 		D8CFED0317E3EE3B0016F090 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
 		D8CFED0717E3EE970016F090 /* KGLUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLUUID.h; sourceTree = "<group>"; };
 		D8CFED0817E3EE970016F090 /* KGLUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLUUID.m; sourceTree = "<group>"; };
+		D8F842F61810A82B0013D2FC /* KGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGL.h; sourceTree = "<group>"; };
+		D8F842F71810A82B0013D2FC /* KGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGL.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +211,8 @@
 				D8A2B92717BEA30900002FF9 /* Supporting Files */,
 				AEDA67A01804AE37006237A6 /* KGLTexture.h */,
 				AEDA67A11804AE37006237A6 /* KGLTexture.m */,
+				D8F842F61810A82B0013D2FC /* KGL.h */,
+				D8F842F71810A82B0013D2FC /* KGL.m */,
 			);
 			path = KGL;
 			sourceTree = "<group>";
@@ -255,6 +261,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8F842F81810A82B0013D2FC /* KGL.h in Headers */,
 				D8A2B95717BEA3C300002FF9 /* KGLDrawable.h in Headers */,
 				D8A2B95917BEA3C300002FF9 /* KGLShader.h in Headers */,
 				D8A2B95B17BEA3C300002FF9 /* KGLError.h in Headers */,
@@ -355,6 +362,7 @@
 				D8A2B96617BEA3C300002FF9 /* KGLDrawableDataIndexed.m in Sources */,
 				D8A2B96817BEA3C300002FF9 /* KGLDrawableDataArray.m in Sources */,
 				D8A2B96A17BEA3C300002FF9 /* KGLCamera.m in Sources */,
+				D8F842F91810A82B0013D2FC /* KGL.m in Sources */,
 				D8A2B96C17BEA3C300002FF9 /* KGLLights.m in Sources */,
 				D8A2B96E17BEA3C300002FF9 /* KGLLight.m in Sources */,
 				AEDA67A31804AE37006237A6 /* KGLTexture.m in Sources */,
