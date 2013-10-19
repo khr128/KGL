@@ -11,8 +11,9 @@
 @protocol KGLTesselate <NSObject>
 - (NSArray *)tesselateWithLevel:(NSInteger)level;
 @property (readonly) BOOL computesNormals;
+
 @optional
-- (NSUInteger)tesselationLevel;
+@property (strong) NSUInteger (^tesselationLevel)();
 - (GLfloat *)toFloats;
 - (GLfloat *)toNormals;
 - (GLfloat *)toTexCoords;
