@@ -11,6 +11,15 @@
 		AEB39984181305FF00179CE8 /* KGLIndexedObjectBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = AEB39982181305FF00179CE8 /* KGLIndexedObjectBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AEB399871813072700179CE8 /* KGLBoxBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB399851813072700179CE8 /* KGLBoxBuilder.m */; };
 		AEB399881813072700179CE8 /* KGLBoxBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = AEB399861813072700179CE8 /* KGLBoxBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEB3998B18131DC100179CE8 /* KGLSphereBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB3998918131DC100179CE8 /* KGLSphereBuilder.m */; };
+		AEB3998C18131DC100179CE8 /* KGLSphereBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = AEB3998A18131DC100179CE8 /* KGLSphereBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEB3998F18131EF900179CE8 /* KGLTorusBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB3998D18131EF900179CE8 /* KGLTorusBuilder.m */; };
+		AEB3999018131EF900179CE8 /* KGLTorusBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = AEB3998E18131EF900179CE8 /* KGLTorusBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEB3999318131FEC00179CE8 /* KGLConeBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB3999118131FEC00179CE8 /* KGLConeBuilder.m */; };
+		AEB3999418131FEC00179CE8 /* KGLConeBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = AEB3999218131FEC00179CE8 /* KGLConeBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEB39998181321A000179CE8 /* KGLTorusBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB39995181321A000179CE8 /* KGLTorusBuilderTests.m */; };
+		AEB39999181321A000179CE8 /* KGLSphereBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB39996181321A000179CE8 /* KGLSphereBuilderTests.m */; };
+		AEB3999A181321A000179CE8 /* KGLConeBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB39997181321A000179CE8 /* KGLConeBuilderTests.m */; };
 		AECBAFA21812C2FC005A8122 /* KGLVector3.m in Sources */ = {isa = PBXBuildFile; fileRef = AECBAFA01812C2FC005A8122 /* KGLVector3.m */; };
 		AECBAFA31812C2FC005A8122 /* KGLVector3.h in Headers */ = {isa = PBXBuildFile; fileRef = AECBAFA11812C2FC005A8122 /* KGLVector3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AECBAFA61812C5A8005A8122 /* KGLParameterizedVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = AECBAFA41812C5A8005A8122 /* KGLParameterizedVertex.m */; };
@@ -93,6 +102,15 @@
 		AEB39982181305FF00179CE8 /* KGLIndexedObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLIndexedObjectBuilder.h; sourceTree = "<group>"; };
 		AEB399851813072700179CE8 /* KGLBoxBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLBoxBuilder.m; sourceTree = "<group>"; };
 		AEB399861813072700179CE8 /* KGLBoxBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLBoxBuilder.h; sourceTree = "<group>"; };
+		AEB3998918131DC100179CE8 /* KGLSphereBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLSphereBuilder.m; sourceTree = "<group>"; };
+		AEB3998A18131DC100179CE8 /* KGLSphereBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLSphereBuilder.h; sourceTree = "<group>"; };
+		AEB3998D18131EF900179CE8 /* KGLTorusBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLTorusBuilder.m; sourceTree = "<group>"; };
+		AEB3998E18131EF900179CE8 /* KGLTorusBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLTorusBuilder.h; sourceTree = "<group>"; };
+		AEB3999118131FEC00179CE8 /* KGLConeBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLConeBuilder.m; sourceTree = "<group>"; };
+		AEB3999218131FEC00179CE8 /* KGLConeBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLConeBuilder.h; sourceTree = "<group>"; };
+		AEB39995181321A000179CE8 /* KGLTorusBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLTorusBuilderTests.m; sourceTree = "<group>"; };
+		AEB39996181321A000179CE8 /* KGLSphereBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLSphereBuilderTests.m; sourceTree = "<group>"; };
+		AEB39997181321A000179CE8 /* KGLConeBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLConeBuilderTests.m; sourceTree = "<group>"; };
 		AECBAFA01812C2FC005A8122 /* KGLVector3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLVector3.m; sourceTree = "<group>"; };
 		AECBAFA11812C2FC005A8122 /* KGLVector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLVector3.h; sourceTree = "<group>"; };
 		AECBAFA41812C5A8005A8122 /* KGLParameterizedVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLParameterizedVertex.m; sourceTree = "<group>"; };
@@ -213,6 +231,9 @@
 		AECBAFC11812CEBC005A8122 /* KGL Tests */ = {
 			isa = PBXGroup;
 			children = (
+				AEB39995181321A000179CE8 /* KGLTorusBuilderTests.m */,
+				AEB39996181321A000179CE8 /* KGLSphereBuilderTests.m */,
+				AEB39997181321A000179CE8 /* KGLConeBuilderTests.m */,
 				AECBAFCF1812CEF8005A8122 /* RSParameterizedVertexTests.m */,
 				AECBAFC21812CEBC005A8122 /* Supporting Files */,
 			);
@@ -232,6 +253,12 @@
 		AECBAFD318130318005A8122 /* Object Builders */ = {
 			isa = PBXGroup;
 			children = (
+				AEB3999118131FEC00179CE8 /* KGLConeBuilder.m */,
+				AEB3999218131FEC00179CE8 /* KGLConeBuilder.h */,
+				AEB3998D18131EF900179CE8 /* KGLTorusBuilder.m */,
+				AEB3998E18131EF900179CE8 /* KGLTorusBuilder.h */,
+				AEB3998918131DC100179CE8 /* KGLSphereBuilder.m */,
+				AEB3998A18131DC100179CE8 /* KGLSphereBuilder.h */,
 				AEB399851813072700179CE8 /* KGLBoxBuilder.m */,
 				AEB399861813072700179CE8 /* KGLBoxBuilder.h */,
 				AEB39981181305FF00179CE8 /* KGLIndexedObjectBuilder.m */,
@@ -412,6 +439,9 @@
 				AECBAFAD1812C8C5005A8122 /* KGLTriangle.h in Headers */,
 				AEB39984181305FF00179CE8 /* KGLIndexedObjectBuilder.h in Headers */,
 				AECBAFA31812C2FC005A8122 /* KGLVector3.h in Headers */,
+				AEB3998C18131DC100179CE8 /* KGLSphereBuilder.h in Headers */,
+				AEB3999018131EF900179CE8 /* KGLTorusBuilder.h in Headers */,
+				AEB3999418131FEC00179CE8 /* KGLConeBuilder.h in Headers */,
 				AECBAFD718130339005A8122 /* KGLObjectBuilder.h in Headers */,
 				AEB399881813072700179CE8 /* KGLBoxBuilder.h in Headers */,
 				D8A2B97817BEA41200002FF9 /* KGLRender.h in Headers */,
@@ -516,6 +546,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEB39998181321A000179CE8 /* KGLTorusBuilderTests.m in Sources */,
+				AEB3999A181321A000179CE8 /* KGLConeBuilderTests.m in Sources */,
+				AEB39999181321A000179CE8 /* KGLSphereBuilderTests.m in Sources */,
 				AECBAFD01812CEF8005A8122 /* RSParameterizedVertexTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -530,6 +563,7 @@
 				D8A2B95C17BEA3C300002FF9 /* KGLError.m in Sources */,
 				D8A2B95E17BEA3C300002FF9 /* KGLShaderAttribute.m in Sources */,
 				D8CFED0517E3EE3B0016F090 /* NSString+UUID.m in Sources */,
+				AEB3998B18131DC100179CE8 /* KGLSphereBuilder.m in Sources */,
 				D8A2B96017BEA3C300002FF9 /* KGLDrawableData.m in Sources */,
 				D8A2B96217BEA3C300002FF9 /* KGLMaterial.m in Sources */,
 				D8A2B96417BEA3C300002FF9 /* KGLAverageNormal.m in Sources */,
@@ -545,10 +579,12 @@
 				D8F842F91810A82B0013D2FC /* KGL.m in Sources */,
 				AECBAFB81812CD03005A8122 /* KGLIndexedQuad.m in Sources */,
 				D8A2B96C17BEA3C300002FF9 /* KGLLights.m in Sources */,
+				AEB3998F18131EF900179CE8 /* KGLTorusBuilder.m in Sources */,
 				D8A2B96E17BEA3C300002FF9 /* KGLLight.m in Sources */,
 				AEDA67A31804AE37006237A6 /* KGLTexture.m in Sources */,
 				AECBAFA61812C5A8005A8122 /* KGLParameterizedVertex.m in Sources */,
 				AECBAFAC1812C8C5005A8122 /* KGLTriangle.m in Sources */,
+				AEB3999318131FEC00179CE8 /* KGLConeBuilder.m in Sources */,
 				D8A2B97017BEA3C300002FF9 /* KGLScene.m in Sources */,
 				D8A2B97217BEA3C300002FF9 /* KGLReferenceFrame.m in Sources */,
 				D8A2B97417BEA3C300002FF9 /* KGLObject.m in Sources */,
