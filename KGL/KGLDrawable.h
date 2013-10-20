@@ -15,11 +15,11 @@
 @class KGLTexture;
 
 @interface KGLDrawable : KGLObject {
-  KGLDrawableData *data;
   KGLMaterial *material;
 }
 
 @property (strong) NSDictionary *shaderAttributes;
 @property (strong) KGLTexture *texture;
+@property (strong) KGLDrawableData *data;
 
 @end

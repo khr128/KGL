@@ -16,7 +16,7 @@
 
 - (void) setScene:(KGLScene *)sceneObject {
   scene = sceneObject;
-  [data bindArrayBuffer];
+  [self.data bindArrayBuffer];
   for(NSString *attributeName in scene.shader.attributes) {
     GLuint posAttribIndex = glGetAttribLocation(scene.shader.program, [attributeName UTF8String]);
     KGLShaderAttribute *attribute = [shaderAttributes objectForKey:attributeName];
@@ -25,7 +25,7 @@
 }
 
 - (void)render {
-  [data bindArrayBuffer];
+  [self.data bindArrayBuffer];
 
   glUseProgram(scene.shader.program);
   
@@ -39,7 +39,7 @@
   glUniform1i(glGetUniformLocation(scene.shader.program, "tex"), 0);
   
   [self.texture bind];
-  [data draw];
+  [self.data draw];
   [self.texture unbind];
 }
 

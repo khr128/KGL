@@ -41,6 +41,8 @@
 		AECBAFD718130339005A8122 /* KGLObjectBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = AECBAFD518130339005A8122 /* KGLObjectBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AEDA67A21804AE37006237A6 /* KGLTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = AEDA67A01804AE37006237A6 /* KGLTexture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AEDA67A31804AE37006237A6 /* KGLTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDA67A11804AE37006237A6 /* KGLTexture.m */; };
+		AEE6EB6C181471E20025FED6 /* KGLBuiltObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE6EB6A181471E20025FED6 /* KGLBuiltObject.m */; };
+		AEE6EB6D181471E20025FED6 /* KGLBuiltObject.h in Headers */ = {isa = PBXBuildFile; fileRef = AEE6EB6B181471E20025FED6 /* KGLBuiltObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D84065F517BF0A8A00D07028 /* shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = D84065F117BF0A6800D07028 /* shader.vsh */; };
 		D84065F617BF0A8A00D07028 /* shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = D84065F217BF0A6800D07028 /* shader.fsh */; };
 		D8A2B92117BEA30900002FF9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A2B92017BEA30900002FF9 /* Cocoa.framework */; };
@@ -134,6 +136,8 @@
 		AECBAFD518130339005A8122 /* KGLObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLObjectBuilder.h; sourceTree = "<group>"; };
 		AEDA67A01804AE37006237A6 /* KGLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLTexture.h; sourceTree = "<group>"; };
 		AEDA67A11804AE37006237A6 /* KGLTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLTexture.m; sourceTree = "<group>"; };
+		AEE6EB6A181471E20025FED6 /* KGLBuiltObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLBuiltObject.m; sourceTree = "<group>"; };
+		AEE6EB6B181471E20025FED6 /* KGLBuiltObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLBuiltObject.h; sourceTree = "<group>"; };
 		D84065F117BF0A6800D07028 /* shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vsh; sourceTree = "<group>"; };
 		D84065F217BF0A6800D07028 /* shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.fsh; sourceTree = "<group>"; };
 		D8A2B91D17BEA30900002FF9 /* KGL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KGL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,6 +257,8 @@
 		AECBAFD318130318005A8122 /* Object Builders */ = {
 			isa = PBXGroup;
 			children = (
+				AEE6EB6A181471E20025FED6 /* KGLBuiltObject.m */,
+				AEE6EB6B181471E20025FED6 /* KGLBuiltObject.h */,
 				AEB3999118131FEC00179CE8 /* KGLConeBuilder.m */,
 				AEB3999218131FEC00179CE8 /* KGLConeBuilder.h */,
 				AEB3998D18131EF900179CE8 /* KGLTorusBuilder.m */,
@@ -443,6 +449,7 @@
 				AEB3999018131EF900179CE8 /* KGLTorusBuilder.h in Headers */,
 				AEB3999418131FEC00179CE8 /* KGLConeBuilder.h in Headers */,
 				AECBAFD718130339005A8122 /* KGLObjectBuilder.h in Headers */,
+				AEE6EB6D181471E20025FED6 /* KGLBuiltObject.h in Headers */,
 				AEB399881813072700179CE8 /* KGLBoxBuilder.h in Headers */,
 				D8A2B97817BEA41200002FF9 /* KGLRender.h in Headers */,
 				D8A2B97917BEA41200002FF9 /* KGLModelingHierarchy.h in Headers */,
@@ -557,6 +564,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEE6EB6C181471E20025FED6 /* KGLBuiltObject.m in Sources */,
 				D8A2B95817BEA3C300002FF9 /* KGLDrawable.m in Sources */,
 				AECBAFD618130339005A8122 /* KGLObjectBuilder.m in Sources */,
 				D8A2B95A17BEA3C300002FF9 /* KGLShader.m in Sources */,
