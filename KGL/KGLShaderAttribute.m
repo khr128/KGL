@@ -7,6 +7,8 @@
 //
 
 #import "KGLShaderAttribute.h"
+#import <GLKit/GLKit.h>
+
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
 @implementation KGLShaderAttribute

@@ -745,7 +745,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KGL/KGL-Prefix.pch";
 				INFOPLIST_FILE = "KGL/KGL-Info.plist";
-				INSTALL_PATH = "~/cocoa/Frameworks";
+				INSTALL_PATH = "$(SOURCE_ROOT)/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -761,7 +761,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KGL/KGL-Prefix.pch";
 				INFOPLIST_FILE = "KGL/KGL-Info.plist";
-				INSTALL_PATH = "~/cocoa/Frameworks";
+				INSTALL_PATH = "$(SOURCE_ROOT)/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};

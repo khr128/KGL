@@ -7,6 +7,7 @@
 //
 
 #import "KGLTexture.h"
+#import <GLKit/GLKit.h>
 
 @implementation KGLTexture
 @synthesize texName=_texName;

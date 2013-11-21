@@ -7,6 +7,7 @@
 //
 
 #import "KGLError.h"
+#import <GLKit/GLKit.h>
 
 @interface KGLError(Private)
 +(NSString *)errorString:(GLenum) error;

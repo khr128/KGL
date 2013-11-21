@@ -7,6 +7,7 @@
 //
 
 #import "KGL.h"
+#import <GLKit/GLKit.h>
 
 @implementation KGL
 

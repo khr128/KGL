@@ -54,7 +54,7 @@ enum {
     for (int i=0; i < vertexCount; ++i) {
       [self.vertices addObject:[NSNull null]];
     }
-    float zDelta = L / kZSectors;
+    float zDelta = 1.0 / kZSectors;
     float phiDelta = TPI / kPhiSectors;
     
     dispatch_queue_t globalQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
