@@ -120,7 +120,7 @@ enum {
     
     if (closeEnd2) {
       //Closed end at z=1
-      int offset = [self secondClosedEndCircleOffsetWithClosedEnd1:closeEnd1 andClosedEnd2:closeEnd2];
+      int offset = [self secondClosedEndCircleOffsetWithClosedEnd1:closeEnd1];
       for (int ph = 0; ph <= kPhiSectors; ++ph) {
         [self.vertices replaceObjectAtIndex:offset+ph
                                  withObject:[[KGLParameterizedVertex alloc] initWithP1:r1 + dr
@@ -143,9 +143,6 @@ enum {
                                                                                       inverseCartesianTransform:inverseClosedEndCartesianTransform]];
     }
 
-//    int elementCount = kZSectors*kPhiSectors;
-//    int elementCount = (kZSectors+1)*kPhiSectors;
-//    int elementCount = (kZSectors+2)*kPhiSectors;
     int elementCount = [self tesselationElementCountWithClosedEnd1:closeEnd1 andClosedEnd2:closeEnd2];
     self.tesselationElements = [[NSMutableArray alloc] initWithCapacity:elementCount];
     for (int i=0; i < elementCount; ++i) {
@@ -163,22 +160,28 @@ enum {
       }
     });
     
-    //Closed end at z=0
-    for (int ph=0; ph < kPhiSectors; ++ph) {
-      [self.tesselationElements replaceObjectAtIndex:kZSectors*kPhiSectors+ph
-                                          withObject:[[KGLIndexedTriangle alloc] initWithI1:(GLuint)((kZSectors+2)*(kPhiSectors+1))
-                                                                                         i2:(GLuint)((kZSectors+1)*(kPhiSectors+1)+ph)
-                                                                                         i3:(GLuint)((kZSectors+1)*(kPhiSectors+1)+ph+1)
-                                                                                andVertices:self.vertices]];
+    if (closeEnd1) {
+      //Closed end at z=0
+      for (int ph=0; ph < kPhiSectors; ++ph) {
+        [self.tesselationElements replaceObjectAtIndex:kZSectors*kPhiSectors+ph
+                                            withObject:[[KGLIndexedTriangle alloc] initWithI1:(GLuint)((kZSectors+2)*(kPhiSectors+1))
+                                                                                           i2:(GLuint)((kZSectors+1)*(kPhiSectors+1)+ph)
+                                                                                           i3:(GLuint)((kZSectors+1)*(kPhiSectors+1)+ph+1)
+                                                                                  andVertices:self.vertices]];
+      }
     }
     
-    //Closed end at z=1
-    for (int ph=0; ph < kPhiSectors; ++ph) {
-      [self.tesselationElements replaceObjectAtIndex:(kZSectors+1)*kPhiSectors+ph
-                                          withObject:[[KGLIndexedTriangle alloc] initWithI1:(GLuint)((kZSectors+3)*(kPhiSectors+1)+1)
-                                                                                         i2:(GLuint)((kZSectors+2)*(kPhiSectors+1)+1+ph)
-                                                                                         i3:(GLuint)((kZSectors+2)*(kPhiSectors+1)+ph+2)
-                                                                                andVertices:self.vertices]];
+    if (closeEnd2) {
+      //Closed end at z=1
+      int elementOffset = [self secondClosedEndElementOffsetWithClosedEnd1:closeEnd1];
+      int offset = [self secondClosedEndCircleOffsetWithClosedEnd1:closeEnd1];
+      for (int ph=0; ph < kPhiSectors; ++ph) {
+        [self.tesselationElements replaceObjectAtIndex:elementOffset+ph
+                                            withObject:[[KGLIndexedTriangle alloc] initWithI1:(GLuint)(offset + kPhiSectors+1)
+                                                                                           i2:(GLuint)(offset+ph)
+                                                                                           i3:(GLuint)(offset+ph+1)
+                                                                                  andVertices:self.vertices]];
+      }
     }
     
   }
@@ -197,11 +200,24 @@ enum {
   return (kZSectors + 3)*(kPhiSectors + 1) + 2;
 }
 
-- (int)secondClosedEndCircleOffsetWithClosedEnd1:(BOOL)closeEnd1 andClosedEnd2:(BOOL)closeEnd2 {
-  return (kZSectors+2)*(kPhiSectors+1)+1;
+- (int)secondClosedEndCircleOffsetWithClosedEnd1:(BOOL)closeEnd1 {
+  return closeEnd1 ? (kZSectors+2)*(kPhiSectors+1)+1 : (kZSectors+1)*(kPhiSectors+1);
+}
+
+- (int)secondClosedEndElementOffsetWithClosedEnd1:(BOOL)closeEnd1 {
+  return closeEnd1 ? (kZSectors+1)*kPhiSectors : kZSectors*kPhiSectors;
 }
 
 - (int)tesselationElementCountWithClosedEnd1:(BOOL)closeEnd1 andClosedEnd2:(BOOL)closeEnd2 {
+  if (!closeEnd1 && !closeEnd2) {
+    //both ends open
+    return kZSectors*kPhiSectors;
+  } else if ( closeEnd1 != closeEnd2 ) {
+    //one open, one closed
+    return (kZSectors + 1)*kPhiSectors;
+  }
+  //both ends closed
+
   return (kZSectors+2)*kPhiSectors;
 }
 
