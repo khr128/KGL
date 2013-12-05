@@ -15,7 +15,12 @@
   float r1, dr;
 }
 
-- (id)initWithP1:(KGLVector3 *)p1 r1:(float)radius1 p2:(KGLVector3 *)p2 r2:(float)radius2;
+- (id)initWithP1:(KGLVector3 *)p1
+              r1:(float)radius1
+              p2:(KGLVector3 *)p2
+              r2:(float)radius2
+       closeEnd1:(BOOL)closeEnd1
+       closeEnd2:(BOOL)closeEnd2;
 - (KGLVector3 *)affineTransform:(KGLVector3 *)v;
 - (KGLVector3 *)inverseAffineTransform:(KGLVector3 *)v;
 @end

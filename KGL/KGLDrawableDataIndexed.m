@@ -37,7 +37,7 @@
   
   int vertexCount = [self vertexCount];
   
-  NSMutableArray * averageNormals = [[NSMutableArray alloc] init];
+  NSMutableArray * averageNormals = [[NSMutableArray alloc] initWithCapacity:vertexCount];
   for (int i=0; i<vertexCount; ++i) {
     [averageNormals addObject:[[KGLAverageNormal alloc]init]];
   }

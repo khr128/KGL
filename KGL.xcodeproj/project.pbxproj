@@ -746,6 +746,7 @@
 				GCC_PREFIX_HEADER = "KGL/KGL-Prefix.pch";
 				INFOPLIST_FILE = "KGL/KGL-Info.plist";
 				INSTALL_PATH = "$(SOURCE_ROOT)/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -762,6 +763,7 @@
 				GCC_PREFIX_HEADER = "KGL/KGL-Prefix.pch";
 				INFOPLIST_FILE = "KGL/KGL-Info.plist";
 				INSTALL_PATH = "$(SOURCE_ROOT)/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
