@@ -165,8 +165,8 @@ enum {
       for (int ph=0; ph < kPhiSectors; ++ph) {
         [self.tesselationElements replaceObjectAtIndex:kZSectors*kPhiSectors+ph
                                             withObject:[[KGLIndexedTriangle alloc] initWithI1:(GLuint)((kZSectors+2)*(kPhiSectors+1))
-                                                                                           i2:(GLuint)((kZSectors+1)*(kPhiSectors+1)+ph)
-                                                                                           i3:(GLuint)((kZSectors+1)*(kPhiSectors+1)+ph+1)
+                                                                                           i2:(GLuint)((kZSectors+1)*(kPhiSectors+1)+ph+1)
+                                                                                           i3:(GLuint)((kZSectors+1)*(kPhiSectors+1)+ph)
                                                                                   andVertices:self.vertices]];
       }
     }
