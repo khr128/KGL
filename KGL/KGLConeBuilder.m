@@ -72,9 +72,6 @@ enum {
                                          z:r.z];
     };
 
-//    int vertexCount = (kZSectors + 1)*(kPhiSectors + 1);
-//    int vertexCount = (kZSectors + 2)*(kPhiSectors + 1) + 1;
-//    int vertexCount = (kZSectors + 3)*(kPhiSectors + 1) + 2;
     int vertexCount = [self vertexCountWithClosedEnd1:closeEnd1 andClosedEnd2:closeEnd2];
     self.vertices = [[NSMutableArray alloc] initWithCapacity:vertexCount];
     for (int i=0; i < vertexCount; ++i) {
@@ -97,48 +94,54 @@ enum {
       }
     });
  
-    //Closed end at z=0
-    for (int ph = 0; ph <= kPhiSectors; ++ph) {
-      [self.vertices replaceObjectAtIndex:(kZSectors+1)*(kPhiSectors+1)+ph withObject:[[KGLParameterizedVertex alloc]
-                                                                                       initWithP1:r1
-                                                                                       p2:ph*phiDelta
-                                                                                       p3:0.0
-                                                                                       s:((GLfloat)ph)/kPhiSectors
-                                                                                       t:0.0
-                                                                                       cartesianTransform:closedEndCartesianTransform
-                                                                                       inverseCartesianTransform:inverseClosedEndCartesianTransform]];
+    if (closeEnd1) {
+      //Closed end at z=0
+      for (int ph = 0; ph <= kPhiSectors; ++ph) {
+        [self.vertices replaceObjectAtIndex:(kZSectors+1)*(kPhiSectors+1)+ph withObject:[[KGLParameterizedVertex alloc]
+                                                                                         initWithP1:r1
+                                                                                         p2:ph*phiDelta
+                                                                                         p3:0.0
+                                                                                         s:((GLfloat)ph)/kPhiSectors
+                                                                                         t:0.0
+                                                                                         cartesianTransform:closedEndCartesianTransform
+                                                                                         inverseCartesianTransform:inverseClosedEndCartesianTransform]];
+      }
+      
+      //The center point for closed end at z=0
+      [self.vertices replaceObjectAtIndex:(kZSectors+2)*(kPhiSectors+1) withObject:[[KGLParameterizedVertex alloc]
+                                                                                    initWithP1:0.0
+                                                                                    p2:0.0
+                                                                                    p3:0.0
+                                                                                    s:1.0
+                                                                                    t:1.0
+                                                                                    cartesianTransform:closedEndCartesianTransform
+                                                                                    inverseCartesianTransform:inverseClosedEndCartesianTransform]];
     }
     
-    //The center point for closed end at z=0
-    [self.vertices replaceObjectAtIndex:(kZSectors+2)*(kPhiSectors+1) withObject:[[KGLParameterizedVertex alloc]
-                                                                                  initWithP1:0.0
-                                                                                  p2:0.0
-                                                                                  p3:0.0
-                                                                                  s:1.0
-                                                                                  t:1.0
-                                                                                  cartesianTransform:closedEndCartesianTransform
-                                                                                  inverseCartesianTransform:inverseClosedEndCartesianTransform]];
-    //Closed end at z=1
-    for (int ph = 0; ph <= kPhiSectors; ++ph) {
-      [self.vertices replaceObjectAtIndex:(kZSectors+2)*(kPhiSectors+1)+1+ph withObject:[[KGLParameterizedVertex alloc]
-                                                                                       initWithP1:r1 + dr
-                                                                                       p2:ph*phiDelta
-                                                                                       p3:1.0
-                                                                                       s:((GLfloat)ph)/kPhiSectors
-                                                                                       t:1.0
-                                                                                       cartesianTransform:closedEndCartesianTransform
-                                                                                       inverseCartesianTransform:inverseClosedEndCartesianTransform]];
+    if (closeEnd2) {
+      //Closed end at z=1
+      int offset = [self secondClosedEndCircleOffsetWithClosedEnd1:closeEnd1 andClosedEnd2:closeEnd2];
+      for (int ph = 0; ph <= kPhiSectors; ++ph) {
+        [self.vertices replaceObjectAtIndex:offset+ph
+                                 withObject:[[KGLParameterizedVertex alloc] initWithP1:r1 + dr
+                                                                                    p2:ph*phiDelta
+                                                                                    p3:1.0
+                                                                                     s:((GLfloat)ph)/kPhiSectors
+                                                                                     t:1.0
+                                                                    cartesianTransform:closedEndCartesianTransform
+                                                             inverseCartesianTransform:inverseClosedEndCartesianTransform]];
+      }
+      
+      //The center point for closed end at z=1
+      [self.vertices replaceObjectAtIndex:offset+kPhiSectors+1 withObject:[[KGLParameterizedVertex alloc]
+                                                                                      initWithP1:0.0
+                                                                                      p2:0.0
+                                                                                      p3:1.0
+                                                                                      s:0.0i
+                                                                                      t:0.0
+                                                                                      cartesianTransform:closedEndCartesianTransform
+                                                                                      inverseCartesianTransform:inverseClosedEndCartesianTransform]];
     }
-    
-    //The center point for closed end at z=1
-    [self.vertices replaceObjectAtIndex:(kZSectors+3)*(kPhiSectors+1)+1 withObject:[[KGLParameterizedVertex alloc]
-                                                                                  initWithP1:0.0
-                                                                                  p2:0.0
-                                                                                  p3:1.0
-                                                                                  s:0.0i
-                                                                                  t:0.0
-                                                                                  cartesianTransform:closedEndCartesianTransform
-                                                                                  inverseCartesianTransform:inverseClosedEndCartesianTransform]];
 
 //    int elementCount = kZSectors*kPhiSectors;
 //    int elementCount = (kZSectors+1)*kPhiSectors;
@@ -183,7 +186,19 @@ enum {
 }
 
 - (int)vertexCountWithClosedEnd1:(BOOL)closeEnd1 andClosedEnd2:(BOOL)closeEnd2 {
+  if (!closeEnd1 && !closeEnd2) {
+    //both ends open
+    return (kZSectors + 1)*(kPhiSectors + 1);
+  } else if ( closeEnd1 != closeEnd2 ) {
+    //one open, one closed
+    return (kZSectors + 2)*(kPhiSectors + 1) + 1;
+  }
+  //both ends closed
   return (kZSectors + 3)*(kPhiSectors + 1) + 2;
+}
+
+- (int)secondClosedEndCircleOffsetWithClosedEnd1:(BOOL)closeEnd1 andClosedEnd2:(BOOL)closeEnd2 {
+  return (kZSectors+2)*(kPhiSectors+1)+1;
 }
 
 - (int)tesselationElementCountWithClosedEnd1:(BOOL)closeEnd1 andClosedEnd2:(BOOL)closeEnd2 {
