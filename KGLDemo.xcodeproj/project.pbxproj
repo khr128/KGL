@@ -20,6 +20,11 @@
 		AEF285F91863AC7A00E987CC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF285D21863AC7900E987CC /* Cocoa.framework */; };
 		AEF286011863AC7A00E987CC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AEF285FF1863AC7A00E987CC /* InfoPlist.strings */; };
 		AEF286031863AC7A00E987CC /* KGLDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF286021863AC7A00E987CC /* KGLDemoTests.m */; };
+		AEF2860E1863AED900E987CC /* KGLDemo3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2860D1863AED900E987CC /* KGLDemo3DView.m */; };
+		AEF286101863AFC100E987CC /* KGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF2860F1863AFC100E987CC /* KGL.framework */; };
+		AEF286121863B15B00E987CC /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF286111863B15B00E987CC /* OpenGL.framework */; };
+		AEF286141863B2B900E987CC /* KControlPanels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF286131863B2B900E987CC /* KControlPanels.framework */; };
+		AEF2861B1863B54C00E987CC /* KGLDemoControlPanelMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2861A1863B54C00E987CC /* KGLDemoControlPanelMediator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +59,13 @@
 		AEF285FE1863AC7A00E987CC /* KGLDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KGLDemoTests-Info.plist"; sourceTree = "<group>"; };
 		AEF286001863AC7A00E987CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AEF286021863AC7A00E987CC /* KGLDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KGLDemoTests.m; sourceTree = "<group>"; };
+		AEF2860C1863AED900E987CC /* KGLDemo3DView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLDemo3DView.h; sourceTree = "<group>"; };
+		AEF2860D1863AED900E987CC /* KGLDemo3DView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLDemo3DView.m; sourceTree = "<group>"; };
+		AEF2860F1863AFC100E987CC /* KGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KGL.framework; path = ../Frameworks/KGL.framework; sourceTree = "<group>"; };
+		AEF286111863B15B00E987CC /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		AEF286131863B2B900E987CC /* KControlPanels.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KControlPanels.framework; path = ../Frameworks/KControlPanels.framework; sourceTree = "<group>"; };
+		AEF286191863B54C00E987CC /* KGLDemoControlPanelMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLDemoControlPanelMediator.h; sourceTree = "<group>"; };
+		AEF2861A1863B54C00E987CC /* KGLDemoControlPanelMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLDemoControlPanelMediator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEF286141863B2B900E987CC /* KControlPanels.framework in Frameworks */,
+				AEF286121863B15B00E987CC /* OpenGL.framework in Frameworks */,
+				AEF286101863AFC100E987CC /* KGL.framework in Frameworks */,
 				AEF285D31863AC7900E987CC /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +114,9 @@
 		AEF285D11863AC7900E987CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AEF286131863B2B900E987CC /* KControlPanels.framework */,
+				AEF286111863B15B00E987CC /* OpenGL.framework */,
+				AEF2860F1863AFC100E987CC /* KGL.framework */,
 				AEF285D21863AC7900E987CC /* Cocoa.framework */,
 				AEF285F71863AC7A00E987CC /* XCTest.framework */,
 				AEF285D41863AC7900E987CC /* Other Frameworks */,
@@ -119,12 +137,11 @@
 		AEF285D81863AC7900E987CC /* KGLDemo */ = {
 			isa = PBXGroup;
 			children = (
-				AEF285E41863AC7900E987CC /* KGLDemoDocument.h */,
-				AEF285E51863AC7900E987CC /* KGLDemoDocument.m */,
-				AEF285E71863AC7900E987CC /* KGLDemoDocument.xib */,
-				AEF285EA1863AC7900E987CC /* MainMenu.xib */,
+				AEF286181863B35800E987CC /* Control Panels */,
+				AEF286171863B33D00E987CC /* Xibs */,
+				AEF286161863B31400E987CC /* View */,
+				AEF286151863B30300E987CC /* Core Data */,
 				AEF285F01863AC7900E987CC /* Images.xcassets */,
-				AEF285ED1863AC7900E987CC /* KGLDemoDocument.xcdatamodeld */,
 				AEF285D91863AC7900E987CC /* Supporting Files */,
 			);
 			path = KGLDemo;
@@ -158,6 +175,43 @@
 				AEF285FF1863AC7A00E987CC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AEF286151863B30300E987CC /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				AEF285E41863AC7900E987CC /* KGLDemoDocument.h */,
+				AEF285E51863AC7900E987CC /* KGLDemoDocument.m */,
+				AEF285ED1863AC7900E987CC /* KGLDemoDocument.xcdatamodeld */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		AEF286161863B31400E987CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AEF2860C1863AED900E987CC /* KGLDemo3DView.h */,
+				AEF2860D1863AED900E987CC /* KGLDemo3DView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		AEF286171863B33D00E987CC /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				AEF285E71863AC7900E987CC /* KGLDemoDocument.xib */,
+				AEF285EA1863AC7900E987CC /* MainMenu.xib */,
+			);
+			name = Xibs;
+			sourceTree = "<group>";
+		};
+		AEF286181863B35800E987CC /* Control Panels */ = {
+			isa = PBXGroup;
+			children = (
+				AEF286191863B54C00E987CC /* KGLDemoControlPanelMediator.h */,
+				AEF2861A1863B54C00E987CC /* KGLDemoControlPanelMediator.m */,
+			);
+			name = "Control Panels";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,8 +315,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEF285EF1863AC7900E987CC /* KGLDemoDocument.xcdatamodeld in Sources */,
+				AEF2861B1863B54C00E987CC /* KGLDemoControlPanelMediator.m in Sources */,
 				AEF285E61863AC7900E987CC /* KGLDemoDocument.m in Sources */,
 				AEF285DF1863AC7900E987CC /* main.m in Sources */,
+				AEF2860E1863AED900E987CC /* KGLDemo3DView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +457,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/khr/cocoa/Frameworks,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KGLDemo/KGLDemo-Prefix.pch";
 				INFOPLIST_FILE = "KGLDemo/KGLDemo-Info.plist";
@@ -414,6 +474,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/khr/cocoa/Frameworks,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KGLDemo/KGLDemo-Prefix.pch";
 				INFOPLIST_FILE = "KGLDemo/KGLDemo-Info.plist";

@@ -1,5 +1,5 @@
 //
-//  KGLDemoDocument.h
+//  KGLDemo3DView.h
 //  KGLDemo
 //
 //  Created by khr on 12/19/13.
@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface KGLDemoDocument : NSPersistentDocument {
-  IBOutlet NSObjectController *objectController;
+@interface KGLDemo3DView : NSOpenGLView {
+  GLuint viewWidth;
+  GLuint viewHeight;
 }
 
 @end

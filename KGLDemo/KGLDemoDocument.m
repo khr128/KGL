@@ -37,4 +37,24 @@
     return YES;
 }
 
+- (id)managedObjectModel {
+  NSBundle *mainBundle = [NSBundle mainBundle];
+  NSString *demoModelPath =
+  [mainBundle pathForResource:@"KGLDemoDocument" ofType:@"momd"];
+  NSURL *demoModelUrl = [NSURL fileURLWithPath:demoModelPath];
+  NSManagedObjectModel *mainModel =
+  [[NSManagedObjectModel alloc] initWithContentsOfURL:demoModelUrl];
+  
+  NSBundle *kControlPanelBundle =
+  [NSBundle bundleWithIdentifier:@"com.khr.KControlPanels"];
+  NSString *path =
+  [kControlPanelBundle pathForResource:@"KCameraUI" ofType:@"momd"];
+  NSURL *url = [NSURL fileURLWithPath:path];
+  NSManagedObjectModel *model =
+  [[NSManagedObjectModel alloc] initWithContentsOfURL:url];
+  return
+  [NSManagedObjectModel modelByMergingModels:
+   [NSArray arrayWithObjects: mainModel, model, nil]];
+}
+
 @end
