@@ -139,4 +139,4 @@ Add an NSOpenGLView subclass and set it up with the following boileplate code
 ### Camera Control Panel
 
 Add camera control panel as described [here](https://github.com/khr128/KControlPanels). Make sure that all
-requiered Object Controller connections and binding as set.
+required Object Controller connections and bindings are set.
