@@ -22,6 +22,23 @@
 }
 
 - (void)prepareOpenGL {
+  
+  scene = [[KGLScene alloc] init];
+  [scene addShaderVertex:@"shader.vsh" fragment:@"shader.fsh"
+          withAttributes:[[NSArray alloc] initWithObjects:@"inPosition", @"normal", @"texCoords", nil]
+             andUniforms:[[NSArray alloc] initWithObjects:
+                          @"modelViewProjectionMatrix",
+                          @"modelViewMatrix",
+                          @"normalMatrix",
+                          @"Material.emissive",
+                          @"Material.ambient",
+                          @"Material.diffuse",
+                          @"Material.specular",
+                          @"Material.shininess",
+                          @"NumEnabledLights",
+                          nil]
+   ];
+  
   // Depth test will always be enabled
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_MULTISAMPLE);

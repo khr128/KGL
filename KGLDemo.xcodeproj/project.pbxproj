@@ -25,6 +25,8 @@
 		AEF286121863B15B00E987CC /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF286111863B15B00E987CC /* OpenGL.framework */; };
 		AEF286141863B2B900E987CC /* KControlPanels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF286131863B2B900E987CC /* KControlPanels.framework */; };
 		AEF2861B1863B54C00E987CC /* KGLDemoControlPanelMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2861A1863B54C00E987CC /* KGLDemoControlPanelMediator.m */; };
+		AEF2862718648C2900E987CC /* shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AEF2862318648C1500E987CC /* shader.fsh */; };
+		AEF2862818648C2900E987CC /* shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = AEF2862418648C1500E987CC /* shader.vsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		AEF286131863B2B900E987CC /* KControlPanels.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KControlPanels.framework; path = ../Frameworks/KControlPanels.framework; sourceTree = "<group>"; };
 		AEF286191863B54C00E987CC /* KGLDemoControlPanelMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLDemoControlPanelMediator.h; sourceTree = "<group>"; };
 		AEF2861A1863B54C00E987CC /* KGLDemoControlPanelMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLDemoControlPanelMediator.m; sourceTree = "<group>"; };
+		AEF2862318648C1500E987CC /* shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.fsh; sourceTree = "<group>"; };
+		AEF2862418648C1500E987CC /* shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,7 @@
 		AEF286161863B31400E987CC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AEF2861C18648A4800E987CC /* Shaders */,
 				AEF2860C1863AED900E987CC /* KGLDemo3DView.h */,
 				AEF2860D1863AED900E987CC /* KGLDemo3DView.m */,
 			);
@@ -212,6 +217,15 @@
 				AEF2861A1863B54C00E987CC /* KGLDemoControlPanelMediator.m */,
 			);
 			name = "Control Panels";
+			sourceTree = "<group>";
+		};
+		AEF2861C18648A4800E987CC /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				AEF2862318648C1500E987CC /* shader.fsh */,
+				AEF2862418648C1500E987CC /* shader.vsh */,
+			);
+			name = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +305,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEF2862718648C2900E987CC /* shader.fsh in Resources */,
+				AEF2862818648C2900E987CC /* shader.vsh in Resources */,
 				AEF285DD1863AC7900E987CC /* InfoPlist.strings in Resources */,
 				AEF285F11863AC7900E987CC /* Images.xcassets in Resources */,
 				AEF285E91863AC7900E987CC /* KGLDemoDocument.xib in Resources */,

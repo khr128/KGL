@@ -8,9 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class KGLScene;
 @interface KGLDemo3DView : NSOpenGLView {
   GLuint viewWidth;
   GLuint viewHeight;
+  KGLScene *scene;
 }
 
 @end
