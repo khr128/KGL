@@ -8,7 +8,8 @@
 
 #import "KGLDemo3DView.h"
 #import <KGL/KGL.h>
-#import "KGL/KGLScene.h"
+#import <KGL/KGLScene.h>
+#import <KGL/KGLReferenceFrame.h>
 
 @implementation KGLDemo3DView
 
@@ -38,6 +39,12 @@
                           @"NumEnabledLights",
                           nil]
    ];
+  
+  mainFrame = [[KGLReferenceFrame alloc] init];
+  frame2 = [[KGLReferenceFrame alloc] init];
+  
+  [scene addChild:mainFrame];
+  [mainFrame addChild:frame2];
   
   // Depth test will always be enabled
   glEnable(GL_DEPTH_TEST);
