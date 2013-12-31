@@ -256,3 +256,82 @@ that are their direct children.
 It is important to build your tree by adding child frames from the root down, because a reference to the `scene` object
 must be properly inherited by all objects in the tree. The scene holds information about shaders, camera, lights, etc 
 which is needed for correct rendering of all the objects in the tree.
+
+### 3D Objects
+
+To render 3D objects, derive your object classes from `KGLDrawable` and add instances of these classes to reference frames.
+`KGLDrawable` encapsulates information about shader attributes, drawable geometry, material and texture used to render an
+object. In this demo we will use `KGLBuiltObject` class which is a subclass of `KGLDrawable`. `KGLDrawable` allows to create
+common 3D geometrical shapes like box, sphere, cone, and torus.
+
+In order to show objects in the view several conditions must be met:
+
+* Set viewport
+* Define camera and view matrix
+* Set projection matrix
+* Add lights and compute their positions in eye coordinates
+* Render scene
+
+#### Setting viewport
+
+We already set viewport to full window extent in the `drawRect:` method
+
+    glViewport(0, 0, viewWidth, viewHeight);
+The values of `viewWidth` and `viewHeight` were obtained in the `reshape()` method
+
+    NSRect viewRectPoints = [self bounds];
+    viewWidth = viewRectPoints.size.width;
+    viewHeight = viewRectPoints.size.height;
+
+#### Defining camera and view matrix
+
+Add method `defineCamera` to `KDemoView` class
+
+    - (void)defineCamera {
+      Point3d *cameraLocation = (Point3d *)camera.location;
+      GLKVector3 eye = GLKVector3Make([cameraLocation.x floatValue],
+                                      [cameraLocation.y floatValue],
+                                      [cameraLocation.z floatValue]);
+      
+      Point3d *cameraLookAt = (Point3d *)camera.lookAt;
+      GLKVector3 center = GLKVector3Make([cameraLookAt.x floatValue],
+                                         [cameraLookAt.y floatValue],
+                                         [cameraLookAt.z floatValue]);
+      Point3d *cameraUp = (Point3d *)camera.up;
+      GLKVector3 up = GLKVector3Make([cameraUp.x floatValue],
+                                     [cameraUp.y floatValue],
+                                     [cameraUp.z floatValue]);
+      
+      [scene.camera setViewEye:eye center:center up:up];
+    }
+This code is mostly self-explanatory. We get camera's location, look-at, and up vectors from the `Camera` Core Data entity
+which is provided by the `KControlPanels` framework. Sending `setViewEye:center:up:` to the scene's camera (defined by `KGL` framework)
+defines the view matrix that is used in subsequent rendering.
+
+#### Setting projection matrix
+
+Add method `defineProjection` to `KDemoView` class
+
+    - (void)defineProjection {
+      [self defineCamera];
+      
+      [scene.camera setProjectionFov:GLKMathDegreesToRadians([camera.angle floatValue])
+                              aspect:(GLfloat)viewWidth / (GLfloat)viewHeight
+                               nearZ:[camera.nearZ floatValue]
+                                farZ:[camera.farZ floatValue]
+       ];
+    }
+This code create a projection matrix that is used to render 3D scene onto our 2D viewport with correct aspect ratio.
+The projection is perspective with the field of view in radians, near clipping plane and far clipping plane obtained from
+the `Camera` Core Data entity which is provided by the `KControlPanels` framework. Sending `setProjectionFov:aspect:nearZ:farZ`
+to the scene's camera (defined by the `KGL` framework) defines the projection matrix used in the subsequent rendering.
+
+We need a separate method `defineCamera` because in `prepareOpenGL` method we want to add lights and compute their positions
+in eye coordinates (see below). A view matrix is required for that, but the projection matrix can not be set because
+viewport dimensions are not defined yet.
+
+The `defineProjection` method is called when the viewport is resized and when we handle camera parameters changes.
+
+#### Adding lights
+
+

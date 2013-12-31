@@ -10,6 +10,11 @@
 #import <KGL/KGL.h>
 #import <KGL/KGLScene.h>
 #import <KGL/KGLReferenceFrame.h>
+#import <KGL/KGLVector3.h>
+#import "KGLDemoCylinder.h"
+#import <KControlPanels/Camera.h>
+#import <KControlPanels/Point3d.h>
+#import "KGLDemoDocument.h"
 
 @implementation KGLDemo3DView
 
@@ -46,6 +51,37 @@
   [scene addChild:mainFrame];
   [mainFrame addChild:frame2];
   
+  cylinder1 = [[KGLDemoCylinder alloc] initWithRadius:0.5
+                                                   p1:[[KGLVector3 alloc] initWithX:0 y:0 z:0]
+                                                   p2:[[KGLVector3 alloc] initWithX:6 y:0 z:0]];
+  
+  [mainFrame addChild:cylinder1];
+  
+  [self defineCamera];
+  
+  //  [scene.lights addDirectionalLightAt:GLKVector4Make(0, -1, -1, 0)
+  //                              ambient:GLKVector4Make(1.0, 0.0, 0.0, 1)
+  //                              diffuse:GLKVector4Make(1.0, 0.0, 0.0, 1)
+  //                             specular:GLKVector4Make(0.0, 0.0, 0.0, 1)];
+  
+  [scene.lights addPointLightAt:GLKVector4Make(0.15, -10, -10, 1)
+                    attenuation:GLKVector3Make(1.0, 0.1, 0.1)
+                        ambient:GLKVector4Make(0.0, 0.0, 0.0, 1)
+                        diffuse:GLKVector4Make(1.0, 0.0, 0.0, 1)
+                       specular:GLKVector4Make(1, 1, 1, 1)];
+  
+  //  [scene.lights addSpotLightAt:GLKVector4Make(0, -1, -3, 1)
+  //                   attenuation:GLKVector3Make(1, 0, 0)
+  //                 spotDirection:GLKVector3Make(1, -2, -3)
+  //             spotRadiusDegrees:30
+  //             spotCutoffDegrees:33
+  //                 spotTightness:0.0
+  //                       ambient:GLKVector4Make(0.0, 0.0, 0.0, 1)
+  //                       diffuse:GLKVector4Make(0, 0, 0, 1)
+  //                      specular:GLKVector4Make(0, 0, 0, 1)];
+  
+  [scene computeLightsEyeCoordinates];
+  
   // Depth test will always be enabled
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_MULTISAMPLE);
@@ -54,6 +90,48 @@
   
   // Always use this clear color
   glClearColor(0.5f, 0.4f, 0.5f, 1.0f);
+  
+  [self addObservers];
+}
+
+- (void)addObservers{
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+  [nc addObserver:self selector:@selector(handleCameraChange:) name:KCONTROLPANELS_CAMERA_CHANGED_NOTIFICATION object:nil];
+}
+
+- (void)handleCameraChange:(NSNotification *) note {
+  camera = note.object;
+  [self defineProjection];
+  [scene computeLightsEyeCoordinates];
+  [self setNeedsDisplay:YES];
+}
+
+- (void)defineCamera {
+  Point3d *cameraLocation = (Point3d *)camera.location;
+  GLKVector3 eye = GLKVector3Make([cameraLocation.x floatValue],
+                                  [cameraLocation.y floatValue],
+                                  [cameraLocation.z floatValue]);
+  
+  Point3d *cameraLookAt = (Point3d *)camera.lookAt;
+  GLKVector3 center = GLKVector3Make([cameraLookAt.x floatValue],
+                                     [cameraLookAt.y floatValue],
+                                     [cameraLookAt.z floatValue]);
+  Point3d *cameraUp = (Point3d *)camera.up;
+  GLKVector3 up = GLKVector3Make([cameraUp.x floatValue],
+                                 [cameraUp.y floatValue],
+                                 [cameraUp.z floatValue]);
+  
+  [scene.camera setViewEye:eye center:center up:up];
+}
+
+- (void)defineProjection {
+  [self defineCamera];
+  
+  [scene.camera setProjectionFov:GLKMathDegreesToRadians([camera.angle floatValue])
+                          aspect:(GLfloat)viewWidth / (GLfloat)viewHeight
+                           nearZ:[camera.nearZ floatValue]
+                            farZ:[camera.farZ floatValue]
+   ];
 }
 
 - (void)drawRect:(NSRect)dirtyRect
@@ -63,6 +141,8 @@
   CGLLockContext([[self openGLContext] CGLContextObj]);
   
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  
+  [scene render];
   
   glViewport(0, 0, viewWidth, viewHeight);
   
@@ -78,6 +158,8 @@
   NSRect viewRectPoints = [self bounds];
   viewWidth = viewRectPoints.size.width;
   viewHeight = viewRectPoints.size.height;
+  
+  [self defineProjection];
   
   CGLUnlockContext([[self openGLContext] CGLContextObj]);
 }
@@ -139,6 +221,7 @@
   [self setWantsBestResolutionOpenGLSurface:YES];
 #endif // SUPPORT_RETINA_RESOLUTION
   
+  camera = [doc fetchOrCreateCamera];
 }
 
 @end

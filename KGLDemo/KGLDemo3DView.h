@@ -8,12 +8,18 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class KGLScene, KGLReferenceFrame;
+@class KGLScene, KGLReferenceFrame, KGLDemoCylinder, Camera;
+@class KGLDemoDocument;
 @interface KGLDemo3DView : NSOpenGLView {
   GLuint viewWidth;
   GLuint viewHeight;
   KGLScene *scene;
+  
+  IBOutlet KGLDemoDocument *doc;
+  Camera *camera;
+  
   KGLReferenceFrame *mainFrame, *frame2;
+  KGLDemoCylinder *cylinder1;
 }
 
 @end

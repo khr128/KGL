@@ -8,8 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class Camera;
 @interface KGLDemoDocument : NSPersistentDocument {
   IBOutlet NSObjectController *objectController;
 }
 
+-(Camera *) fetchOrCreateCamera;
 @end

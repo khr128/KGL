@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE35111F186AF0B7004DED72 /* KGLDemoCylinder.m in Sources */ = {isa = PBXBuildFile; fileRef = AE35111E186AF0B7004DED72 /* KGLDemoCylinder.m */; };
 		AEF285D31863AC7900E987CC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF285D21863AC7900E987CC /* Cocoa.framework */; };
 		AEF285DD1863AC7900E987CC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AEF285DB1863AC7900E987CC /* InfoPlist.strings */; };
 		AEF285DF1863AC7900E987CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF285DE1863AC7900E987CC /* main.m */; };
@@ -40,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE35111D186AF0B7004DED72 /* KGLDemoCylinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLDemoCylinder.h; sourceTree = "<group>"; };
+		AE35111E186AF0B7004DED72 /* KGLDemoCylinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLDemoCylinder.m; sourceTree = "<group>"; };
 		AEF285CF1863AC7900E987CC /* KGLDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KGLDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF285D21863AC7900E987CC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		AEF285D51863AC7900E987CC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -96,6 +99,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE35111C186AF080004DED72 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				AE35111D186AF0B7004DED72 /* KGLDemoCylinder.h */,
+				AE35111E186AF0B7004DED72 /* KGLDemoCylinder.m */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
 		AEF285C61863AC7900E987CC = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +206,7 @@
 		AEF286161863B31400E987CC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AE35111C186AF080004DED72 /* Objects */,
 				AEF2861C18648A4800E987CC /* Shaders */,
 				AEF2860C1863AED900E987CC /* KGLDemo3DView.h */,
 				AEF2860D1863AED900E987CC /* KGLDemo3DView.m */,
@@ -331,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEF285EF1863AC7900E987CC /* KGLDemoDocument.xcdatamodeld in Sources */,
+				AE35111F186AF0B7004DED72 /* KGLDemoCylinder.m in Sources */,
 				AEF2861B1863B54C00E987CC /* KGLDemoControlPanelMediator.m in Sources */,
 				AEF285E61863AC7900E987CC /* KGLDemoDocument.m in Sources */,
 				AEF285DF1863AC7900E987CC /* main.m in Sources */,
@@ -561,6 +575,7 @@
 				AEF286081863AC7A00E987CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AEF286091863AC7A00E987CC /* Build configuration list for PBXNativeTarget "KGLDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -569,6 +584,7 @@
 				AEF2860B1863AC7A00E987CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
