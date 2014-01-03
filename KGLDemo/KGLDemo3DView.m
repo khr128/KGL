@@ -134,22 +134,7 @@
    ];
 }
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-	[super drawRect:dirtyRect];
-  [[self openGLContext] makeCurrentContext];
-  CGLLockContext([[self openGLContext] CGLContextObj]);
-  
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  
-  [scene render];
-  
-  glViewport(0, 0, viewWidth, viewHeight);
-  
-	CGLFlushDrawable([[self openGLContext] CGLContextObj]);
-	CGLUnlockContext([[self openGLContext] CGLContextObj]);
-}
-
+m
 - (void)reshape {
   [super reshape];
   
