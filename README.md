@@ -270,6 +270,7 @@ In order to show objects in the view several conditions must be met:
 * Define camera and view matrix
 * Set projection matrix
 * Add lights and compute their positions in eye coordinates
+* Build and add 3D object geometry (vertex buffers) to a reference frame
 * Render scene
 
 #### Setting viewport
@@ -347,6 +348,86 @@ This adds a point light in world coordinates and recomputes this light coordinat
 at the origin of the eye reference frame). It is possible to add directional and spot lights using `KGL` framework too. The
 method `computeLightsEyeCoordinates` must be called every time the camera position is updated to ensure correct lighting.
 
+#### Building and adding 3D geometry
+
+`KGL` framework provides a base class `KGLBuiltObject` that assists in assembling all necessary vertex, normal and texture
+data using 3D object builders (also provided by the `KGL` framework). To use these facilities simply derive your own class
+from `KGLBuiltObject`:
+
+*KGLDemoCylinder.h*
+
+    #import <KGL/KGLBuiltObject.h>
+
+    @class KGLVector3;
+    @interface KGLDemoCylinder : KGLBuiltObject
+    - (id)initWithRadius:(float)radius p1:(KGLVector3 *)p1 p2:(KGLVector3 *)p2;
+    @end
+
+The initializer `initWithRadius:p1:p2:` will generate a cylinder with a given radius along the straight line connecting
+points `p1` and `p2` with the cylinder ends perpendicular to this line. We implement the cylinder with `KGLConeBuilder`,
+which generates the required shape when the radii at both ends are the same.
+
+*KGLDemoCylinder.h*
+
+    #import "KGLDemoCylinder.h"
+    #import <KGL/KGLConeBuilder.h>
+    #import <KGL/KGLVector3.h>
+    #import <KGL/KGLUUID.h>
+    #import <KGL/KGLShaderAttribute.h>
+
+    @implementation KGLDemoCylinder
+
+    - (id)initWithRadius:(float)radius p1:(KGLVector3 *)p1 p2:(KGLVector3 *)p2 {
+      self = [super init];
+      if (self) {
+        KGLConeBuilder *coneBuilder = [[KGLConeBuilder alloc] initWithP1:p1
+                                                                      r1:radius
+                                                                      p2:p2
+                                                                      r2:radius
+                                                               closeEnd1:YES closeEnd2:YES];
+        coneBuilder.tesselationLevel = ^{
+          return (NSUInteger)0;
+        };
+        __weak typeof(self) self_ = self;
+        self.customTemplate = ^{
+          [self_ appearance];
+          [self_ translationX:p1.x y:p1.y z:p1.z];
+        };
+        [self createIndexedDrawable:coneBuilder];
+        self.uuid = [KGLUUID generate];
+      }
+      return self;
+    }
+
+    - (void)appearance {
+      self.shaderAttributes = [[NSMutableDictionary alloc]
+                               initWithObjectsAndKeys:
+                               [[KGLShaderAttribute alloc] initWithComponentCount:3
+                                                                             type:GL_FLOAT
+                                                                       normalized:GL_FALSE
+                                                                           stride:0
+                                                                     bufferOffset:0],
+                               @"inPosition",
+                               [[KGLShaderAttribute alloc] initWithComponentCount:3
+                                                                             type:GL_FLOAT
+                                                                       normalized:GL_FALSE
+                                                                           stride:0
+                                                                     bufferOffset:[self.data vertexSize]],
+                               @"normal",
+                               nil];
+      
+      material = [[KGLMaterial alloc] initWithEmissive:GLKVector4Make(0.0, 0.0, 0.0, 1.0)
+                                               ambient:GLKVector4Make(1.0, 1.0, 1.0, 1.0)
+                                               diffuse:GLKVector4Make(1, 1, 1, 1.0)
+                                              specular:GLKVector4Make(0.75, 0.75, 0.75, 1.0)
+                                             shininess:12.0];
+    }
+
+    @end
+
+
+
+
 #### Render scene
 
 After everything is properly set up, scene rendering is easy. Just send `render` message to the `scene` object.
@@ -369,4 +450,30 @@ Here is the final `drawRect` method in `KGLDemo3DView` class
     }
 
 ## Using camera
+
+Subscribe to notifications from the camera control panel (provided by the `KControlPanels` framework):
+
+*KDemo3DView.m*
+
+    - (void)addObservers {
+      NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+      [nc addObserver:self selector:@selector(handleCameraChange:) name:KCONTROLPANELS_CAMERA_CHANGED_NOTIFICATION object:nil];
+    }
+
+    - (void)prepareOpenGL {
+      ...
+      [self addObservers];
+    }
+
+And update the view in the event handler
+
+    - (void)handleCameraChange:(NSNotification *) note {
+      camera = note.object;
+      [self defineProjection];
+      [scene computeLightsEyeCoordinates];
+      [self setNeedsDisplay:YES];
+    }
+
+Since its possible that the camera position has changed, we should always recompute lights' coordinates in the eye reference 
+frame.
 
