@@ -334,4 +334,39 @@ The `defineProjection` method is called when the viewport is resized and when we
 
 #### Adding lights
 
+Add the following code in `prepareOpenGL` method after you have defined camera:
+
+    [scene.lights addPointLightAt:GLKVector4Make(0.15, -10, -10, 1)
+                      attenuation:GLKVector3Make(1.0, 0.1, 0.1)
+                          ambient:GLKVector4Make(0.0, 0.0, 0.0, 1)
+                          diffuse:GLKVector4Make(1.0, 0.0, 0.0, 1)
+                         specular:GLKVector4Make(1, 1, 1, 1)];
+    [scene computeLightsEyeCoordinates];
+
+This adds a point light in world coordinates and recomputes this light coordinates to the eye coordinates (i.e. camera is
+at the origin of the eye reference frame). It is possible to add directional and spot lights using `KGL` framework too. The
+method `computeLightsEyeCoordinates` must be called every time the camera position is updated to ensure correct lighting.
+
+#### Render scene
+
+After everything is properly set up, scene rendering is easy. Just send `render` message to the `scene` object.
+Here is the final `drawRect` method in `KGLDemo3DView` class
+
+    - (void)drawRect:(NSRect)dirtyRect
+    {
+      [super drawRect:dirtyRect];
+      [[self openGLContext] makeCurrentContext];
+      CGLLockContext([[self openGLContext] CGLContextObj]);
+      
+      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      
+      glViewport(0, 0, viewWidth, viewHeight);
+      
+      [scene render];
+      
+      CGLFlushDrawable([[self openGLContext] CGLContextObj]);
+      CGLUnlockContext([[self openGLContext] CGLContextObj]);
+    }
+
+## Using camera
 
