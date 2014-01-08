@@ -322,7 +322,7 @@ Add method `defineProjection` to `KDemoView` class
                                 farZ:[camera.farZ floatValue]
        ];
     }
-This code create a projection matrix that is used to render 3D scene onto our 2D viewport with correct aspect ratio.
+This code creates a projection matrix that is used to render 3D scene onto our 2D viewport with correct aspect ratio.
 The projection is perspective with the field of view in radians, near clipping plane and far clipping plane obtained from
 the `Camera` Core Data entity which is provided by the `KControlPanels` framework. Sending `setProjectionFov:aspect:nearZ:farZ`
 to the scene's camera (defined by the `KGL` framework) defines the projection matrix used in the subsequent rendering.
@@ -425,7 +425,30 @@ which generates the required shape when the radii at both ends are the same.
 
     @end
 
+The method (block) `customTemplate` is called after all drawable date is created. This method can be used to fine tune
+the generated object. Here we make sure that our generated data is connected to shader variables with correct names and
+has expected types, sizes and offsets. Also we create a material that will be used by the shader to determine our object's
+color and reflective properties. It is possible to customize our cylinder with `tesselationLevel` block. Returning higher
+values will generate a finer mesh, which could be useful when using narrow spotlights for example. Usually tesselation level 0
+is sufficient, higher values will generate significantly larger amounts of vertices and can slow down rendering.
 
+The data generation is done by by `createIndexedDrawable` method. After it finishes successfully the `coneBuilder` is not
+needed anymore and it can be safely reclaimed by the ARC. Optionally, we can label our object with a UUID. Doing so can make
+it easier to work with this object later.
+
+We now instantiate an object of our class `KGLDemoCylinder` and add it to a reference frame
+
+*KGLDemo3DView.m*
+
+    -(void) prepareOpenGL {
+      ...
+      cylinder1 = [[KGLDemoCylinder alloc] initWithRadius:0.5
+                                                       p1:[[KGLVector3 alloc] initWithX:0 y:0 z:0]
+                                                       p2:[[KGLVector3 alloc] initWithX:6 y:0 z:0]];
+      
+      [mainFrame addChild:cylinder1];
+      ...
+    }
 
 
 #### Render scene
