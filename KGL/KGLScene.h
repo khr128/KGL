@@ -19,8 +19,17 @@
 @property (strong) KGLLights *lights;
 @property (strong) KGLCamera *camera;
 
-- (void)addShaderVertex:(NSString *)vertexShaderFile fragment:(NSString *)fragmentShaderFile
-         withAttributes:(NSArray *)attributes andUniforms:(NSArray *)uniforms;
+- (void)addShaderVertex:(NSString *)vertexShaderFile
+               fragment:(NSString *)fragmentShaderFile
+         withAttributes:(NSArray *)attributes
+            andUniforms:(NSArray *)uniforms;
+
+- (void)addShaderNamed:(NSString *)shaderName
+                vertex:(NSString *)vertexShaderFile
+              fragment:(NSString *)fragmentShaderFile
+        withAttributes:(NSArray *)attributes
+           andUniforms:(NSArray *)uniforms;
+
 - (void)loadLightsInto:(KGLShader *)shader;
 - (void)computeLightsEyeCoordinates;
 

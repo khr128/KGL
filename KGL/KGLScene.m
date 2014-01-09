@@ -31,6 +31,19 @@
 - (void)addShaderVertex:(NSString *)vertexShaderFile fragment:(NSString *)fragmentShaderFile
          withAttributes:(NSArray *)attributes andUniforms:(NSArray *)uniforms
 {
+  [self addShaderNamed:@"default"
+                vertex:vertexShaderFile
+              fragment:fragmentShaderFile
+        withAttributes:attributes
+           andUniforms:uniforms];
+}
+
+- (void)addShaderNamed:(NSString *)shaderName
+                vertex:(NSString *)vertexShaderFile
+              fragment:(NSString *)fragmentShaderFile
+        withAttributes:(NSArray *)attributes
+           andUniforms:(NSArray *)uniforms
+{
   KGLShader *shader = [[KGLShader alloc] init];
   shader.vertexShaderFile = vertexShaderFile;
   shader.fragmentShaderFile = fragmentShaderFile;
@@ -40,9 +53,9 @@
   
   [shader build];
   
-  [shaders setObject:shader forKey:@"default"];
+  [shaders setObject:shader forKey:shaderName];
   
-  [KGLError log];  
+  [KGLError log];
 }
 
 - (void)loadLightsInto:(KGLShader *)shader {
