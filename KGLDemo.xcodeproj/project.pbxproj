@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE284F9A187F261900FDD703 /* texture_shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = AE284F99187F261900FDD703 /* texture_shader.fsh */; };
+		AE284F9C187F264000FDD703 /* texture_shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = AE284F9B187F264000FDD703 /* texture_shader.vsh */; };
+		AE284F9D187F26BD00FDD703 /* texture_shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AE284F99187F261900FDD703 /* texture_shader.fsh */; };
+		AE284F9E187F26BD00FDD703 /* texture_shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = AE284F9B187F264000FDD703 /* texture_shader.vsh */; };
+		AE284FA2187F294400FDD703 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = AE284FA1187F294400FDD703 /* test.png */; };
 		AE35111F186AF0B7004DED72 /* KGLDemoCylinder.m in Sources */ = {isa = PBXBuildFile; fileRef = AE35111E186AF0B7004DED72 /* KGLDemoCylinder.m */; };
 		AEF285D31863AC7900E987CC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF285D21863AC7900E987CC /* Cocoa.framework */; };
 		AEF285DD1863AC7900E987CC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AEF285DB1863AC7900E987CC /* InfoPlist.strings */; };
@@ -41,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE284F99187F261900FDD703 /* texture_shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture_shader.fsh; sourceTree = "<group>"; };
+		AE284F9B187F264000FDD703 /* texture_shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture_shader.vsh; sourceTree = "<group>"; };
+		AE284FA1187F294400FDD703 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		AE35111D186AF0B7004DED72 /* KGLDemoCylinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLDemoCylinder.h; sourceTree = "<group>"; };
 		AE35111E186AF0B7004DED72 /* KGLDemoCylinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLDemoCylinder.m; sourceTree = "<group>"; };
 		AEF285CF1863AC7900E987CC /* KGLDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KGLDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE284F9F187F291900FDD703 /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				AE284FA1187F294400FDD703 /* test.png */,
+			);
+			name = Textures;
+			sourceTree = "<group>";
+		};
 		AE35111C186AF080004DED72 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +222,7 @@
 		AEF286161863B31400E987CC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AE284F9F187F291900FDD703 /* Textures */,
 				AE35111C186AF080004DED72 /* Objects */,
 				AEF2861C18648A4800E987CC /* Shaders */,
 				AEF2860C1863AED900E987CC /* KGLDemo3DView.h */,
@@ -236,7 +253,9 @@
 			isa = PBXGroup;
 			children = (
 				AEF2862318648C1500E987CC /* shader.fsh */,
+				AE284F99187F261900FDD703 /* texture_shader.fsh */,
 				AEF2862418648C1500E987CC /* shader.vsh */,
+				AE284F9B187F264000FDD703 /* texture_shader.vsh */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -318,6 +337,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE284F9D187F26BD00FDD703 /* texture_shader.fsh in Resources */,
+				AE284FA2187F294400FDD703 /* test.png in Resources */,
+				AE284F9E187F26BD00FDD703 /* texture_shader.vsh in Resources */,
 				AEF2862718648C2900E987CC /* shader.fsh in Resources */,
 				AEF2862818648C2900E987CC /* shader.vsh in Resources */,
 				AEF285DD1863AC7900E987CC /* InfoPlist.strings in Resources */,
@@ -343,9 +365,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE284F9C187F264000FDD703 /* texture_shader.vsh in Sources */,
 				AEF285EF1863AC7900E987CC /* KGLDemoDocument.xcdatamodeld in Sources */,
 				AE35111F186AF0B7004DED72 /* KGLDemoCylinder.m in Sources */,
 				AEF2861B1863B54C00E987CC /* KGLDemoControlPanelMediator.m in Sources */,
+				AE284F9A187F261900FDD703 /* texture_shader.fsh in Sources */,
 				AEF285E61863AC7900E987CC /* KGLDemoDocument.m in Sources */,
 				AEF285DF1863AC7900E987CC /* main.m in Sources */,
 				AEF2860E1863AED900E987CC /* KGLDemo3DView.m in Sources */,

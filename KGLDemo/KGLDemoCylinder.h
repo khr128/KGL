@@ -11,4 +11,5 @@
 @class KGLVector3;
 @interface KGLDemoCylinder : KGLBuiltObject
 - (id)initWithRadius:(float)radius p1:(KGLVector3 *)p1 p2:(KGLVector3 *)p2;
+- (id)initWithRadius:(float)radius p1:(KGLVector3 *)p1 p2:(KGLVector3 *)p2 andTexture:(NSString *)textureImage;
 @end

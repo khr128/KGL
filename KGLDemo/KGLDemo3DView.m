@@ -27,11 +27,9 @@
     return self;
 }
 
-- (void)prepareOpenGL {
-  
-  scene = [[KGLScene alloc] init];
+- (void)buildShaders {
   [scene addShaderVertex:@"shader.vsh" fragment:@"shader.fsh"
-          withAttributes:[[NSArray alloc] initWithObjects:@"inPosition", @"normal", @"texCoords", nil]
+          withAttributes:[[NSArray alloc] initWithObjects:@"inPosition", @"normal", nil]
              andUniforms:[[NSArray alloc] initWithObjects:
                           @"modelViewProjectionMatrix",
                           @"modelViewMatrix",
@@ -45,6 +43,28 @@
                           nil]
    ];
   
+  [scene addShaderNamed: @"with_texture"
+                 vertex:@"texture_shader.vsh" fragment:@"texture_shader.fsh"
+          withAttributes:[[NSArray alloc] initWithObjects:@"inPosition", @"normal", @"texCoords", nil]
+             andUniforms:[[NSArray alloc] initWithObjects:
+                          @"modelViewProjectionMatrix",
+                          @"modelViewMatrix",
+                          @"normalMatrix",
+                          @"Material.emissive",
+                          @"Material.ambient",
+                          @"Material.diffuse",
+                          @"Material.specular",
+                          @"Material.shininess",
+                          @"NumEnabledLights",
+                          nil]
+   ];
+}
+
+- (void)prepareOpenGL {
+  
+  scene = [[KGLScene alloc] init];
+  [self buildShaders];
+  
   mainFrame = [[KGLReferenceFrame alloc] init];
   frame2 = [[KGLReferenceFrame alloc] init];
   
@@ -52,10 +72,17 @@
   [mainFrame addChild:frame2];
   
   cylinder1 = [[KGLDemoCylinder alloc] initWithRadius:0.5
-                                                   p1:[[KGLVector3 alloc] initWithX:0 y:0 z:0]
-                                                   p2:[[KGLVector3 alloc] initWithX:6 y:0 z:0]];
+                                                   p1:[[KGLVector3 alloc] initWithX:-3 y:0 z:0]
+                                                   p2:[[KGLVector3 alloc] initWithX:3 y:0 z:0]];
+  
+  cylinder2 = [[KGLDemoCylinder alloc] initWithRadius:0.5
+                                                   p1:[[KGLVector3 alloc] initWithX:0 y:-2 z:-3]
+                                                   p2:[[KGLVector3 alloc] initWithX:0 y:-2 z:3]
+                                           andTexture:@"test.png"];
+  cylinder2.shaderName = @"with_texture";
   
   [mainFrame addChild:cylinder1];
+  [frame2 addChild:cylinder2];
   
   [self defineCamera];
   
@@ -66,8 +93,8 @@
   
   [scene.lights addPointLightAt:GLKVector4Make(0.15, -10, -10, 1)
                     attenuation:GLKVector3Make(1.0, 0.1, 0.1)
-                        ambient:GLKVector4Make(0.0, 0.0, 0.0, 1)
-                        diffuse:GLKVector4Make(1.0, 0.0, 0.0, 1)
+                        ambient:GLKVector4Make(0.5, 0.5, 0.5, 1)
+                        diffuse:GLKVector4Make(1.0, 1.0, 1.0, 1)
                        specular:GLKVector4Make(1, 1, 1, 1)];
   
   //  [scene.lights addSpotLightAt:GLKVector4Make(0, -1, -3, 1)

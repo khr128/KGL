@@ -19,7 +19,7 @@
   Camera *camera;
   
   KGLReferenceFrame *mainFrame, *frame2;
-  KGLDemoCylinder *cylinder1;
+  KGLDemoCylinder *cylinder1, *cylinder2;
 }
 
 @end

@@ -36,6 +36,7 @@ uniform light LightSource[8];
 
 in vec4 inPosition;
 in vec3 normal;
+in vec2 texCoords;
 
 out vec4 vertexColor;
 out vec2 fragTexCoords;
@@ -179,6 +180,7 @@ void main (void) {
   }
     
   vertexColor = min(Material.emissive + amb * Material.ambient + diff * Material.diffuse + spec * Material.specular, 1.0);
+  fragTexCoords = texCoords;
   
   gl_Position = modelViewProjectionMatrix * inPosition;
 }
