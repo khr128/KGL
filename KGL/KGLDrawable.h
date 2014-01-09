@@ -12,12 +12,14 @@
 #import "KGLMaterial.h"
 #import "KGLObject.h"
 
-@class KGLTexture;
+@class KGLTexture, KGLShader;
 
 @interface KGLDrawable : KGLObject {
   KGLMaterial *material;
 }
 
+@property (strong) NSString *shaderName;
+@property (strong) KGLShader *shader;
 @property (strong) NSDictionary *shaderAttributes;
 @property (strong) KGLTexture *texture;
 @property (strong) KGLDrawableData *data;

@@ -12,13 +12,22 @@
 #import "KGLTexture.h"
 
 @implementation KGLDrawable
-@synthesize shaderAttributes, scene;
+@synthesize shaderAttributes, scene, shaderName, shader;
+
+- (id) init {
+  self = [super init];
+  if (self) {
+    self.shaderName = @"default";
+  }
+  return self;
+}
 
 - (void) setScene:(KGLScene *)sceneObject {
   scene = sceneObject;
   [self.data bindArrayBuffer];
-  for(NSString *attributeName in scene.shader.attributes) {
-    GLuint posAttribIndex = glGetAttribLocation(scene.shader.program, [attributeName UTF8String]);
+  shader = [scene.shaders objectForKey:self.shaderName];
+  for(NSString *attributeName in shader.attributes) {
+    GLuint posAttribIndex = glGetAttribLocation(shader.program, [attributeName UTF8String]);
     KGLShaderAttribute *attribute = [shaderAttributes objectForKey:attributeName];
     [attribute enableVertexArray:posAttribIndex];
   }
@@ -27,16 +36,16 @@
 - (void)render {
   [self.data bindArrayBuffer];
 
-  glUseProgram(scene.shader.program);
+  glUseProgram(shader.program);
   
-  [material loadUniformsInto:scene.shader];
-  [scene loadLights];
+  [material loadUniformsInto:shader];
+  [scene loadLightsInto:shader];
   
   GLKMatrix4 globalModelMatrix = GLKMatrix4Multiply(self.parent.modelMatrix, self.localModelMatrix);
-  [scene setModelTransformUniformsWith:globalModelMatrix];
+  [scene setModelTransformUniformsIn:shader with:globalModelMatrix];
   
   glActiveTexture(GL_TEXTURE0);
-  glUniform1i(glGetUniformLocation(scene.shader.program, "tex"), 0);
+  glUniform1i(glGetUniformLocation(shader.program, "tex"), 0);
   
   [self.texture bind];
   [self.data draw];

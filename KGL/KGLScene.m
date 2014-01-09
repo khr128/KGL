@@ -10,12 +10,13 @@
 #import "KGLError.h"
 
 @implementation KGLScene
-@synthesize shader, lights, camera;
+@synthesize shaders, lights, camera;
 - (id)init {
   self = [super init];
   if (self) {
     lights = [[KGLLights alloc] init];
     camera = [[KGLCamera alloc] init];
+    shaders = [[NSMutableDictionary alloc] init];
     self.modelMatrix = GLKMatrix4Identity;
   }
   return self;
@@ -30,7 +31,7 @@
 - (void)addShaderVertex:(NSString *)vertexShaderFile fragment:(NSString *)fragmentShaderFile
          withAttributes:(NSArray *)attributes andUniforms:(NSArray *)uniforms
 {
-  shader = [[KGLShader alloc] init];
+  KGLShader *shader = [[KGLShader alloc] init];
   shader.vertexShaderFile = vertexShaderFile;
   shader.fragmentShaderFile = fragmentShaderFile;
   
@@ -39,10 +40,12 @@
   
   [shader build];
   
+  [shaders setObject:shader forKey:@"default"];
+  
   [KGLError log];  
 }
 
-- (void)loadLights {
+- (void)loadLightsInto:(KGLShader *)shader {
   [lights loadUniformsInto:shader];
 }
 
@@ -50,7 +53,7 @@
   [lights computeEyeCoordsWith:camera];
 }
 
-- (void)setModelTransformUniformsWith:(GLKMatrix4)objectModelMatrix {
+- (void)setModelTransformUniformsIn:(KGLShader *)shader with:(GLKMatrix4)objectModelMatrix {
   GLKMatrix4 modelViewMatrix = [camera modelViewWith:objectModelMatrix]; //camera defines view matrix
   GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
   GLKMatrix4 mvp = [camera modelViewProjectionWith:modelViewMatrix]; //camera defines projection matrix

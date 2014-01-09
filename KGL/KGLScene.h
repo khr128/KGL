@@ -15,14 +15,14 @@
 
 @interface KGLScene : KGLObject
 
-@property (strong) KGLShader *shader;
+@property (strong) NSMutableDictionary *shaders;
 @property (strong) KGLLights *lights;
 @property (strong) KGLCamera *camera;
 
 - (void)addShaderVertex:(NSString *)vertexShaderFile fragment:(NSString *)fragmentShaderFile
          withAttributes:(NSArray *)attributes andUniforms:(NSArray *)uniforms;
-- (void)loadLights;
+- (void)loadLightsInto:(KGLShader *)shader;
 - (void)computeLightsEyeCoordinates;
 
-- (void) setModelTransformUniformsWith:(GLKMatrix4)objectModelMatrix;
+- (void) setModelTransformUniformsIn:(KGLShader *)shader with:(GLKMatrix4)objectModelMatrix;
 @end
