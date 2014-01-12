@@ -509,7 +509,7 @@ Let's extract the shader building code into a separate method
 
 *KGLDemo3DView.m*
 
-   - (void)buildShaders {
+    - (void)buildShaders {
       [scene addShaderVertex:@"shader.vsh" fragment:@"shader.fsh"
               withAttributes:[[NSArray alloc] initWithObjects:@"inPosition", @"normal", nil]
                  andUniforms:[[NSArray alloc] initWithObjects:
@@ -647,19 +647,19 @@ with the textured shader program:
 
 *KGLDemo3DView.m*
 
--(void) prepareOpenGL {
-  ...
-  cylinder1 = [[KGLDemoCylinder alloc] initWithRadius:0.5
-                                                   p1:[[KGLVector3 alloc] initWithX:-3 y:0 z:0]
-                                                   p2:[[KGLVector3 alloc] initWithX:3 y:0 z:0]];
-  
-  cylinder2 = [[KGLDemoCylinder alloc] initWithRadius:0.5
-                                                   p1:[[KGLVector3 alloc] initWithX:0 y:-2 z:-3]
-                                                   p2:[[KGLVector3 alloc] initWithX:0 y:-2 z:3]
-                                           andTexture:@"salmon_texture.png"];
-  cylinder2.shaderName = @"with_texture";
-  
-  [mainFrame addChild:cylinder1];
-  [frame2 addChild:cylinder2];
-  ...
-}
+    -(void) prepareOpenGL {
+      ...
+      cylinder1 = [[KGLDemoCylinder alloc] initWithRadius:0.5
+                                                       p1:[[KGLVector3 alloc] initWithX:-3 y:0 z:0]
+                                                       p2:[[KGLVector3 alloc] initWithX:3 y:0 z:0]];
+      
+      cylinder2 = [[KGLDemoCylinder alloc] initWithRadius:0.5
+                                                       p1:[[KGLVector3 alloc] initWithX:0 y:-2 z:-3]
+                                                       p2:[[KGLVector3 alloc] initWithX:0 y:-2 z:3]
+                                               andTexture:@"salmon_texture.png"];
+      cylinder2.shaderName = @"with_texture";
+      
+      [mainFrame addChild:cylinder1];
+      [frame2 addChild:cylinder2];
+      ...
+    }
