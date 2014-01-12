@@ -28,18 +28,7 @@
 }
 
 - (id)initWithRadius:(float)radius p1:(KGLVector3 *)p1 p2:(KGLVector3 *)p2 {
-  self = [super init];
-  if (self) {
-    KGLConeBuilder *coneBuilder = [self createBuilder:radius p2:p2 p1:p1];
-    __weak typeof(self) self_ = self;
-    self.customTemplate = ^{
-      [self_ appearance];
-      [self_ translationX:p1.x y:p1.y z:p1.z];
-    };
-    [self createIndexedDrawable:coneBuilder];
-    self.uuid = [KGLUUID generate];
-  }
-  return self;
+  return [self initWithRadius:radius p1:p1 p2:p2 andTexture:nil];
 }
 
 - (id)initWithRadius:(float)radius p1:(KGLVector3 *)p1 p2:(KGLVector3 *)p2 andTexture:(NSString *)textureImage {
@@ -48,8 +37,12 @@
     KGLConeBuilder *coneBuilder = [self createBuilder:radius p2:p2 p1:p1];
     __weak typeof(self) self_ = self;
     self.customTemplate = ^{
-      [self_ loadTextureCoordinatesFromIndexed:coneBuilder];
-      [self_ appearanceWithTexture:textureImage];
+      if (textureImage) {
+        [self_ loadTextureCoordinatesFromIndexed:coneBuilder];
+        [self_ appearanceWithTexture:textureImage];
+      } else {
+        [self_ appearance];
+      }
       [self_ translationX:p1.x y:p1.y z:p1.z];
     };
     [self createIndexedDrawable:coneBuilder];

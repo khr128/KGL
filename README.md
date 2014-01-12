@@ -168,7 +168,7 @@ Add object of class `KGLScene` to your view and initialize it in the `prepareOpe
 Add the following code to the `prepareOpenGL()` method immediately after the scene initialization.
 
     [scene addShaderVertex:@"shader.vsh" fragment:@"shader.fsh"
-            withAttributes:[[NSArray alloc] initWithObjects:@"inPosition", @"normal", @"texCoords", nil]
+            withAttributes:[[NSArray alloc] initWithObjects:@"inPosition", @"normal", nil]
                andUniforms:[[NSArray alloc] initWithObjects:
                             @"modelViewProjectionMatrix",
                             @"modelViewMatrix",
@@ -211,7 +211,6 @@ Shader attributes can have any valid name, make sure you use them in your shader
     ...
     in vec4 inPosition;
     in vec3 normal;
-    in vec2 texCoords;
     ...
 
 As you build the shader program you might get the following warning in the Xcode console
@@ -500,3 +499,167 @@ And update the view in the event handler
 Since its possible that the camera position has changed, we should always recompute lights' coordinates in the eye reference 
 frame.
 
+## Adding texture
+
+First of all we will need an additional shader program for rendering objects with texture. The scene provides a dictionary of
+shaders which can be identified by names. When we used the method  `addShaderVertex:fragment:withAttributes:andUniforms` the scene
+silently named our shader "default". Class `KGLScene` also provides a method 
+`addShaderNamed:vertex:fragment:withAttributes:andUniforms` which allows us to label our compiled shader with an arbitrary name.
+Let's extract the shader building code into a separate method
+
+*KGLDemo3DView.m*
+
+   - (void)buildShaders {
+      [scene addShaderVertex:@"shader.vsh" fragment:@"shader.fsh"
+              withAttributes:[[NSArray alloc] initWithObjects:@"inPosition", @"normal", nil]
+                 andUniforms:[[NSArray alloc] initWithObjects:
+                              @"modelViewProjectionMatrix",
+                              @"modelViewMatrix",
+                              @"normalMatrix",
+                              @"Material.emissive",
+                              @"Material.ambient",
+                              @"Material.diffuse",
+                              @"Material.specular",
+                              @"Material.shininess",
+                              @"NumEnabledLights",
+                              nil]
+       ];
+      
+      [scene addShaderNamed: @"with_texture"
+                     vertex:@"texture_shader.vsh" fragment:@"texture_shader.fsh"
+              withAttributes:[[NSArray alloc] initWithObjects:@"inPosition", @"normal", @"texCoords", nil]
+                 andUniforms:[[NSArray alloc] initWithObjects:
+                              @"modelViewProjectionMatrix",
+                              @"modelViewMatrix",
+                              @"normalMatrix",
+                              @"Material.emissive",
+                              @"Material.ambient",
+                              @"Material.diffuse",
+                              @"Material.specular",
+                              @"Material.shininess",
+                              @"NumEnabledLights",
+                              nil]
+       ];
+    }
+
+We need to add `texture_shader.vsh` and `texture_shader.fsh` to the application`s bundle. The vertex shader is basically
+the same as the vertex shader without textures, except that it receives texture coordinates and transmits them to the
+fragment shader:
+
+*texture_shader.vsh*
+
+    in vec2 texCoords;
+    out vec2 fragTexCoords;
+    ...
+    void main (void) {
+    ...
+      fragTexCoords = texCoords;
+    ...
+    }
+
+The fragment shader uses texture sampler to get color from the texture at the specified texture coordinate
+
+*texture_shader.fsh*
+
+    #version 150
+
+    uniform sampler2D tex; //this is the texture
+    in vec4 vertexColor;
+    in vec2 fragTexCoords; //this is the texture coord
+
+    out vec4 fragColor;
+
+    void main (void) {
+      vec4 textureColor;
+      textureColor = texture(tex, fragTexCoords);
+      fragColor = textureColor*vertexColor;
+    }
+
+Next add a texture image to your application`s bundle. We are going to add one more cylinder to the view, so our
+cylinder builder class needs a new initializer for textured cylinders.
+
+*KGLDemoCylinder.m*
+
+    - (id)initWithRadius:(float)radius p1:(KGLVector3 *)p1 p2:(KGLVector3 *)p2 {
+      return [self initWithRadius:radius p1:p1 p2:p2 andTexture:nil];
+    }
+
+    - (id)initWithRadius:(float)radius p1:(KGLVector3 *)p1 p2:(KGLVector3 *)p2 andTexture:(NSString *)textureImage {
+      self = [super init];
+      if (self) {
+        KGLConeBuilder *coneBuilder = [self createBuilder:radius p2:p2 p1:p1];
+        __weak typeof(self) self_ = self;
+        self.customTemplate = ^{
+          if (textureImage) {
+            [self_ loadTextureCoordinatesFromIndexed:coneBuilder];
+            [self_ appearanceWithTexture:textureImage];
+          } else {
+            [self_ appearance];
+          }
+          [self_ translationX:p1.x y:p1.y z:p1.z];
+        };
+        [self createIndexedDrawable:coneBuilder];
+        self.uuid = [KGLUUID generate];
+      }
+      return self;
+    }
+
+We shall use the textured initializer as the designated initializer to create cylinders without texture too.
+
+The `KGLConeBuilder` class generates texture coordinates to wrap a texture image around the side surface and the closed
+ends, if any. The method `loadTextureCoordinatesFromIndexed:` in `KGLBuiltObject` class makes these texture coordinates 
+available to the shader program.
+
+The method `appearanceWithTexture:` loads a texture image from the application's bundle, creates a `KGLTexture` object
+that will be used during rendering,
+and makes sure that texture coordinates are properly transmitted to the shader program:
+
+*KGLDemoCylinder.m*
+
+    - (void)appearanceWithTexture:(NSString *)textureImage {
+      [self setShaderAttributes];
+      
+      NSImage *image = [NSImage imageNamed:textureImage];
+      CGImageRef imageRef = [image CGImageForProposedRect:nil context:nil hints:nil];
+      CFDataRef imageDataRef = CGDataProviderCopyData(CGImageGetDataProvider(imageRef));
+      const UInt8 *pImageData = CFDataGetBytePtr(imageDataRef);
+      
+      self.texture = [[KGLTexture alloc] initWithBytes:pImageData
+                                                 width:CGImageGetWidth(imageRef)
+                                                height:CGImageGetHeight(imageRef)];
+      
+      [(NSMutableDictionary *)self.shaderAttributes setObject:[[KGLShaderAttribute alloc] initWithComponentCount:2
+                                                                                                            type:GL_FLOAT
+                                                                                                      normalized:GL_FALSE
+                                                                                                          stride:0
+                                                                                                    bufferOffset:2*[self.data vertexSize]]
+                                                       forKey:@"texCoords"];
+      
+      material = [[KGLMaterial alloc] initWithEmissive:GLKVector4Make(0.0, 0.0, 0.0, 1.0)
+                                               ambient:GLKVector4Make(1.0, 1.0, 1.0, 1.0)
+                                               diffuse:GLKVector4Make(1, 1, 1, 1.0)
+                                              specular:GLKVector4Make(0.75, 0.75, 0.75, 1.0)
+                                             shininess:12.0];
+     }
+
+All we have to do now is to add another cylinder object to our rendering hierarchy and to specify that it should be rendered
+with the textured shader program:
+
+*KGLDemo3DView.m*
+
+-(void) prepareOpenGL {
+  ...
+  cylinder1 = [[KGLDemoCylinder alloc] initWithRadius:0.5
+                                                   p1:[[KGLVector3 alloc] initWithX:-3 y:0 z:0]
+                                                   p2:[[KGLVector3 alloc] initWithX:3 y:0 z:0]];
+  
+  cylinder2 = [[KGLDemoCylinder alloc] initWithRadius:0.5
+                                                   p1:[[KGLVector3 alloc] initWithX:0 y:-2 z:-3]
+                                                   p2:[[KGLVector3 alloc] initWithX:0 y:-2 z:3]
+                                           andTexture:@"salmon_texture.png"];
+  cylinder2.shaderName = @"with_texture";
+  
+  [mainFrame addChild:cylinder1];
+  [frame2 addChild:cylinder2];
+  ...
+}

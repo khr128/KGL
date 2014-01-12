@@ -11,7 +11,7 @@
 		AE284F9C187F264000FDD703 /* texture_shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = AE284F9B187F264000FDD703 /* texture_shader.vsh */; };
 		AE284F9D187F26BD00FDD703 /* texture_shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AE284F99187F261900FDD703 /* texture_shader.fsh */; };
 		AE284F9E187F26BD00FDD703 /* texture_shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = AE284F9B187F264000FDD703 /* texture_shader.vsh */; };
-		AE284FA2187F294400FDD703 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = AE284FA1187F294400FDD703 /* test.png */; };
+		AE284FA2187F294400FDD703 /* salmon_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = AE284FA1187F294400FDD703 /* salmon_texture.png */; };
 		AE35111F186AF0B7004DED72 /* KGLDemoCylinder.m in Sources */ = {isa = PBXBuildFile; fileRef = AE35111E186AF0B7004DED72 /* KGLDemoCylinder.m */; };
 		AEF285D31863AC7900E987CC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF285D21863AC7900E987CC /* Cocoa.framework */; };
 		AEF285DD1863AC7900E987CC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AEF285DB1863AC7900E987CC /* InfoPlist.strings */; };
@@ -48,7 +48,7 @@
 /* Begin PBXFileReference section */
 		AE284F99187F261900FDD703 /* texture_shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture_shader.fsh; sourceTree = "<group>"; };
 		AE284F9B187F264000FDD703 /* texture_shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture_shader.vsh; sourceTree = "<group>"; };
-		AE284FA1187F294400FDD703 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		AE284FA1187F294400FDD703 /* salmon_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = salmon_texture.png; sourceTree = "<group>"; };
 		AE35111D186AF0B7004DED72 /* KGLDemoCylinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLDemoCylinder.h; sourceTree = "<group>"; };
 		AE35111E186AF0B7004DED72 /* KGLDemoCylinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLDemoCylinder.m; sourceTree = "<group>"; };
 		AEF285CF1863AC7900E987CC /* KGLDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KGLDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,7 +110,7 @@
 		AE284F9F187F291900FDD703 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
-				AE284FA1187F294400FDD703 /* test.png */,
+				AE284FA1187F294400FDD703 /* salmon_texture.png */,
 			);
 			name = Textures;
 			sourceTree = "<group>";
@@ -338,7 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE284F9D187F26BD00FDD703 /* texture_shader.fsh in Resources */,
-				AE284FA2187F294400FDD703 /* test.png in Resources */,
+				AE284FA2187F294400FDD703 /* salmon_texture.png in Resources */,
 				AE284F9E187F26BD00FDD703 /* texture_shader.vsh in Resources */,
 				AEF2862718648C2900E987CC /* shader.fsh in Resources */,
 				AEF2862818648C2900E987CC /* shader.vsh in Resources */,

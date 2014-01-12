@@ -78,7 +78,7 @@
   cylinder2 = [[KGLDemoCylinder alloc] initWithRadius:0.5
                                                    p1:[[KGLVector3 alloc] initWithX:0 y:-2 z:-3]
                                                    p2:[[KGLVector3 alloc] initWithX:0 y:-2 z:3]
-                                           andTexture:@"test.png"];
+                                           andTexture:@"salmon_texture.png"];
   cylinder2.shaderName = @"with_texture";
   
   [mainFrame addChild:cylinder1];
