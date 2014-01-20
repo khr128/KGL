@@ -48,6 +48,26 @@
                             <action selector="showCameraControlPanel:" target="naC-rY-aE1" id="njf-Or-alO"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="fO6-rh-ybP">
+                        <rect key="frame" x="20" y="351" width="53" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Objects" id="j2p-11-uVe">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="PiT-9R-yL0">
+                        <rect key="frame" x="79" y="351" width="13" height="13"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="disclosureTriangle" bezelStyle="disclosure" imagePosition="above" alignment="left" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="p3w-kT-31L">
+                            <behavior key="behavior" pushIn="YES" changeBackground="YES" changeGray="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showObjectsControlPanel:" target="naC-rY-aE1" id="Ny2-wS-VmQ"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>

@@ -10,4 +10,5 @@
 
 @interface KGLDemoControlPanelMediator : KControlPanelsMediatorBase
 - (IBAction)showCameraControlPanel:(id)sender;
+- (IBAction)showObjectsControlPanel:(id)sender;
 @end

@@ -14,4 +14,8 @@
   [self showPanel:sender nibName:@"KCameraUIControlPanel" context:nil];  
 }
 
+- (IBAction)showObjectsControlPanel:(id)sender {
+  [self showPanel:sender nibName:@"KGLDemoObjectsControlPanel" context:nil];
+}
+
 @end

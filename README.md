@@ -132,8 +132,8 @@ Add an NSOpenGLView subclass and set it up with the following boileplate code
       [self setWantsBestResolutionOpenGLSurface:YES];
     #endif // SUPPORT_RETINA_RESOLUTION
     
-  }
-  @end
+    }
+    @end
 
 
 ### Camera Control Panel
@@ -612,7 +612,7 @@ available to the shader program.
 
 The method `appearanceWithTexture:` loads a texture image from the application's bundle, creates a `KGLTexture` object
 that will be used during rendering,
-and makes sure that texture coordinates are properly transmitted to the shader program:
+and makes sure that texture coordinates are properly transmitted to the shader program by setting shader attributes:
 
 *KGLDemoCylinder.m*
 
@@ -663,3 +663,55 @@ with the textured shader program:
       [frame2 addChild:cylinder2];
       ...
     }
+
+## Controlling object positions and orientations
+
+Add a control panel as described [here](https://github.com/khr128/KControlPanels). Add `Rotation` entity to the Core Data
+data model with two float attributes `mainFrameAngle` and `nestedFrameAngle`. Add two circular sliders and bind their values to
+the `Rotation` attributes via Object Controller content. (Details on how to do it can be found in the link above.)
+
+Add KVO observers to the `Rotation` class.
+
+*Rotation.m*
+
+    #import "Rotation.h"
+
+    NSString * const KGL_DEMO_DISPLAY_UPDATE_NOTIFICATION = @"kglDemoDisplayUpdateNotification";
+
+    @implementation Rotation
+
+    @dynamic mainFrameAngle;
+    @dynamic nestedFrameAngle;
+
+    - (void)addObservers {
+      [self addObserver:self forKeyPath:@"mainFrameAngle" options:NSKeyValueObservingOptionNew context:nil];
+      [self addObserver:self forKeyPath:@"nestedFrameAngle" options:NSKeyValueObservingOptionNew context:nil];
+    }
+
+    - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+      NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+      [nc postNotificationName:KGL_DEMO_DISPLAY_UPDATE_NOTIFICATION object:self];
+    }
+    @end
+
+Handle `KGL_DEMO_DISPLAY_UPDATE_NOTIFICATION` in the view class.
+
+*KGLDemo3DView.m*
+
+    - (void)addObservers{
+      NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+      ...
+      [nc addObserver:self selector:@selector(handleDisplayUpdate:) name:KGL_DEMO_DISPLAY_UPDATE_NOTIFICATION object:nil];
+    }
+
+    - (void)handleDisplayUpdate:(NSNotification *) note {
+      Rotation *rotation = note.object;
+      [mainFrame rotationX:0 y:[rotation.mainFrameAngle floatValue] z:0];
+      [frame2 rotationX:0 y:[rotation.nestedFrameAngle floatValue] z:0];
+      [self setNeedsDisplay:YES];
+    }
+
+Setting rotation angle around the Y-axis in the `mainFrame` rotates the cylinder that is its direct child and all the
+objects (just one in this case) in nested child frames (just `frame2` in this case). Setting angle in the nested frame
+`frame2` rotates only its children relative to the parent frame `mainFrame`.
+

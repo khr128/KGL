@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="untitled.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Rotation" representedClassName="Rotation" syncable="YES">
+        <attribute name="mainFrameAngle" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="nestedFrameAngle" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Rotation" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
 </model>

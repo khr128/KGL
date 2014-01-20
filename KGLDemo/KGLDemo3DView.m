@@ -15,6 +15,7 @@
 #import <KControlPanels/Camera.h>
 #import <KControlPanels/Point3d.h>
 #import "KGLDemoDocument.h"
+#import "Rotation.h"
 
 @implementation KGLDemo3DView
 
@@ -124,12 +125,20 @@
 - (void)addObservers{
   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc addObserver:self selector:@selector(handleCameraChange:) name:KCONTROLPANELS_CAMERA_CHANGED_NOTIFICATION object:nil];
+  [nc addObserver:self selector:@selector(handleDisplayUpdate:) name:KGL_DEMO_DISPLAY_UPDATE_NOTIFICATION object:nil];
 }
 
 - (void)handleCameraChange:(NSNotification *) note {
   camera = note.object;
   [self defineProjection];
   [scene computeLightsEyeCoordinates];
+  [self setNeedsDisplay:YES];
+}
+
+- (void)handleDisplayUpdate:(NSNotification *) note {
+  Rotation *rotation = note.object;
+  [mainFrame rotationX:0 y:[rotation.mainFrameAngle floatValue] z:0];
+  [frame2 rotationX:0 y:[rotation.nestedFrameAngle floatValue] z:0];
   [self setNeedsDisplay:YES];
 }
 

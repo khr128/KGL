@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AE284F9A187F261900FDD703 /* texture_shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = AE284F99187F261900FDD703 /* texture_shader.fsh */; };
-		AE284F9C187F264000FDD703 /* texture_shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = AE284F9B187F264000FDD703 /* texture_shader.vsh */; };
 		AE284F9D187F26BD00FDD703 /* texture_shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AE284F99187F261900FDD703 /* texture_shader.fsh */; };
 		AE284F9E187F26BD00FDD703 /* texture_shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = AE284F9B187F264000FDD703 /* texture_shader.vsh */; };
 		AE284FA2187F294400FDD703 /* salmon_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = AE284FA1187F294400FDD703 /* salmon_texture.png */; };
+		AE284FA418857EB500FDD703 /* KGLDemoObjectsControlPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE284FA318857EB500FDD703 /* KGLDemoObjectsControlPanel.xib */; };
+		AE284FA71885C93000FDD703 /* Rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = AE284FA61885C93000FDD703 /* Rotation.m */; };
 		AE35111F186AF0B7004DED72 /* KGLDemoCylinder.m in Sources */ = {isa = PBXBuildFile; fileRef = AE35111E186AF0B7004DED72 /* KGLDemoCylinder.m */; };
 		AEF285D31863AC7900E987CC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF285D21863AC7900E987CC /* Cocoa.framework */; };
 		AEF285DD1863AC7900E987CC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AEF285DB1863AC7900E987CC /* InfoPlist.strings */; };
@@ -49,6 +49,9 @@
 		AE284F99187F261900FDD703 /* texture_shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture_shader.fsh; sourceTree = "<group>"; };
 		AE284F9B187F264000FDD703 /* texture_shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture_shader.vsh; sourceTree = "<group>"; };
 		AE284FA1187F294400FDD703 /* salmon_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = salmon_texture.png; sourceTree = "<group>"; };
+		AE284FA318857EB500FDD703 /* KGLDemoObjectsControlPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KGLDemoObjectsControlPanel.xib; sourceTree = "<group>"; };
+		AE284FA51885C93000FDD703 /* Rotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rotation.h; sourceTree = "<group>"; };
+		AE284FA61885C93000FDD703 /* Rotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rotation.m; sourceTree = "<group>"; };
 		AE35111D186AF0B7004DED72 /* KGLDemoCylinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGLDemoCylinder.h; sourceTree = "<group>"; };
 		AE35111E186AF0B7004DED72 /* KGLDemoCylinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGLDemoCylinder.m; sourceTree = "<group>"; };
 		AEF285CF1863AC7900E987CC /* KGLDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KGLDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,6 +218,8 @@
 				AEF285E41863AC7900E987CC /* KGLDemoDocument.h */,
 				AEF285E51863AC7900E987CC /* KGLDemoDocument.m */,
 				AEF285ED1863AC7900E987CC /* KGLDemoDocument.xcdatamodeld */,
+				AE284FA51885C93000FDD703 /* Rotation.h */,
+				AE284FA61885C93000FDD703 /* Rotation.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 			children = (
 				AEF285E71863AC7900E987CC /* KGLDemoDocument.xib */,
 				AEF285EA1863AC7900E987CC /* MainMenu.xib */,
+				AE284FA318857EB500FDD703 /* KGLDemoObjectsControlPanel.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -346,6 +352,7 @@
 				AEF285F11863AC7900E987CC /* Images.xcassets in Resources */,
 				AEF285E91863AC7900E987CC /* KGLDemoDocument.xib in Resources */,
 				AEF285E31863AC7900E987CC /* Credits.rtf in Resources */,
+				AE284FA418857EB500FDD703 /* KGLDemoObjectsControlPanel.xib in Resources */,
 				AEF285EC1863AC7900E987CC /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,11 +372,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE284F9C187F264000FDD703 /* texture_shader.vsh in Sources */,
 				AEF285EF1863AC7900E987CC /* KGLDemoDocument.xcdatamodeld in Sources */,
 				AE35111F186AF0B7004DED72 /* KGLDemoCylinder.m in Sources */,
 				AEF2861B1863B54C00E987CC /* KGLDemoControlPanelMediator.m in Sources */,
-				AE284F9A187F261900FDD703 /* texture_shader.fsh in Sources */,
+				AE284FA71885C93000FDD703 /* Rotation.m in Sources */,
 				AEF285E61863AC7900E987CC /* KGLDemoDocument.m in Sources */,
 				AEF285DF1863AC7900E987CC /* main.m in Sources */,
 				AEF2860E1863AED900E987CC /* KGLDemo3DView.m in Sources */,

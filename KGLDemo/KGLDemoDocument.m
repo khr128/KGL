@@ -9,6 +9,7 @@
 #import "KGLDemoDocument.h"
 #import <KControlPanels/Camera.h>
 #import <KControlPanels/Point3d.h>
+#import "Rotation.h"
 
 @implementation KGLDemoDocument
 
@@ -31,7 +32,7 @@
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
 {
   [super windowControllerDidLoadNib:aController];
-  // Add any code here that needs to be executed once the windowController has loaded the document's window.
+  objectController.content = [self fetchOrCreateRotationEntity];
 }
 
 + (BOOL)autosavesInPlace
@@ -83,4 +84,26 @@
   }
   return camera;
 }
+
+- (Rotation *)fetchOrCreateRotationEntity {
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  [request setEntity:[NSEntityDescription entityForName:@"Rotation" inManagedObjectContext:self.managedObjectContext]];
+  request.includesSubentities = YES;
+  NSError *error = nil;
+  NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
+  
+  Rotation *rotation;
+  if (results.count > 0) {
+    rotation = [results objectAtIndex:0];
+  } else {
+    rotation = [NSEntityDescription insertNewObjectForEntityForName:@"Rotation"
+                                               inManagedObjectContext:self.managedObjectContext];
+    rotation.mainFrameAngle = [NSNumber numberWithFloat:12.345];
+    rotation.nestedFrameAngle = [NSNumber numberWithFloat:54.312];
+  }
+  
+  [rotation addObservers];
+  return rotation;
+}
+
 @end
